@@ -3,12 +3,13 @@ from models.user import User
 from models.product import Product
 from models.seller_user import Seller
 from models.order import Order
+from models.categories import Category
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm.session import sessionmaker
 
-classes = {"User": User, "Product": Product, "Seller": Seller, "Order": Order}
+classes = {"User": User, "Product": Product, "Seller": Seller, "Order": Order, "Category": Category}
 
 class DBStorage:
     """ data storage using sqlalchemy"""

@@ -6,6 +6,9 @@ views = Blueprint('views', __name__)
 def store():
     return render_template("store.html")
 
+@views.route('/selected_item')
+def selected_cart():
+    return render_template("selected_item.html")
 
 @views.route('/cart')
 def cart():

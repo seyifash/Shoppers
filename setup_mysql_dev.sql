@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS shoppers_db;
 CREATE USER
-    IF NOT EXISTS 'Shoppers'@'localhost';
+    IF NOT EXISTS 'Shoppers'@'localhost'
     IDENTIFIED BY 'shoppers1996';
 GRANT ALL PRIVILEGES
     ON Shoppers_db.*
