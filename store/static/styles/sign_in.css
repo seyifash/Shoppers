@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: myFont;
+    src: url(fonts/GumelaRegular.ttf);
+    
+}
+
+@font-face {
+    font-family: fontBold;
+    src: url(fonts/NoyhSlimR-Medium.ttf);
+    
+}
+@font-face {
+    font-family: fontBold2;
+    src: url(fonts/SoftSemiBold.ttf);
+    
+}
+html {
+    height: 100vh;
+    background: black;
+    color: white;
+}
+body {
+}
+.container {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-me {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 70px;
+}
+
+.hello-msg {
+    font-family: fontBold2;
+    font-size: 90px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    line-height: 80px;
+}
+
+.greetings {
+    font-family: fontBold;
+    font-size: 30px;
+}
+.logging{
+    display: flex;
+    flex-direction: column;
+   
+    width: 400px;
+    margin-left: 50px;
+}
+.content-div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+.em-cont {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    z-index: 2;
+}
+input:focus {
+    background-color: black; /* Set your desired background color when in focus */
+    /* Add other styling properties as needed */
+}
+.the-control {
+    height: 50px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: none;
+    outline: none;
+    padding-left: 10px;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    z-index: 1;
+}
+.texts {
+    position: absolute;
+    top: -16%;
+    left: 10%;
+    z-index: 10000;
+    margin-right: 2px;
+    margin-left: 2px;
+}
+.texts.span {
+    z-index: 1000;
+}

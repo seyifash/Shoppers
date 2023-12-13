@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles/sign_in.css">
+    <title>Shoppers Home</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+    <body>
+        <div class="container">
+            <div class="logo">
+            </div>
+            <div class="welcome-me">
+                <span class="hello-msg">Hello</span>
+                <span class="greetings">Welcome back Shopper!</span>
+            </div>
+            <div class="logging">
+                <form method="POST" action="{{ url_for('seller_auth.seller_login') }}"> 
+                    <div class="content-div">
+                        <div class="em-cont">
+                            <div class="texts"><span>Email</span></div>
+                            <input 
+                                type="email"
+                                class="the-control"
+                                id="email"
+                                name="email" 
+                                placeholder="shoppit@gmail.com"
+                            />
+                        </div>
+                        <div class="em-cont">
+                                <input 
+                                    type="password"
+                                    class="the-control"
+                                    id="password"
+                                    name="password" 
+                                    placeholder="Enter password"
+                                />
+                        </div>
+                        <div class="forgot">
+                            <span class="forgot">Forgot password?</span>
+                        </div>
+                        <br />
+                            <button type="submit" class="primary-btn">Sign in</button>
+                    </div> 
+                </form> 
+            </div>
+        </div>
+    </body>
+</html>
