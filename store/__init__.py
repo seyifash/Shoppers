@@ -3,6 +3,7 @@ from flask_login import LoginManager
 from itsdangerous import URLSafeTimedSerializer
 from models.seller_user import Seller
 from models.user import User
+from itsdangerous.exc import SignatureExpired
 from flask_mail import Mail
 from models import storage
 from decouple import config
@@ -18,8 +19,8 @@ def create_app():
     app.config['MAIL_USE_SSL'] = config('MAIL_USE_SSL', default=True, cast=bool)
     app.config['MAIL_USE_TLS'] = False
     app.config['MAIL_SSL_VERSION'] = 'TLSv1.3'
-    app.config['MAIL_USERNAME'] = 'nexustechfortobi@gmail.com'
-    app.config['MAIL_PASSWORD'] = 'flcspcduucvvgpjv'
+    app.config['MAIL_USERNAME'] = 'nexuscorefortobi@gmail.com'
+    app.config['MAIL_PASSWORD'] = 'quanbhgkggjiownn'
     
     mail = Mail(app)
     app.config['mail'] = mail

@@ -3,6 +3,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from models.seller_user import Seller
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
+from itsdangerous.exc import SignatureExpired
 from models import storage
 from hashlib import md5
 
@@ -26,12 +27,27 @@ def confirm_email(token):
     serializer = current_app.config['serializer']
     try:
         email = serializer.loads(token, salt='seller-email-confirm', max_age=3600)
-        session['email_confirmed'] = True
-        session['confirmed_email'] = email
-        flash('Email confirmed successfully! You can now complete your registration.', category='success')
-        return redirect(url_for('seller_auth.signup'))  # Redirect to the signup page to complete the registration
+        user = storage.get_by_email(Seller, email)
+        print(user)
+        print(email)
+
+        if user:
+            print("my user: {}".format(user))
+            try:
+                user.confirm_email()
+                storage.save()
+                print("users again: {}".format(user))
+                return redirect(url_for('seller_auth.seller_login'))
+            except Exception as e:
+                print(f"Error in confirm_email: {e}")
+                return render_template('confirmation_errors.html')
+        else:
+            flash('User not found.', category='error')
+            return render_template('confirmation_errors.html')
+    except SignatureExpired:
+        return render_template('confirmation_errors.html')
     except Exception as e:
-        flash('Invalid or expired confirmation link.', category='error')
+        print(f"Error in confirm_email: {e}")
         return render_template('confirmation_error.html')
 
 @seller_auth.route('/seller_login', methods=['GET', 'POST'])
@@ -80,13 +96,11 @@ def sign_up():
         elif len(password) < 4:
             flash('Passwords must be at least 4 characters', category='error')
         else:
+            new_user = request.form.to_dict()
+            new_user.pop('password2')
+            created_user = Seller(**new_user)
+            created_user.save()
             send_confirmation_email(email)
-            flash('An email confirmation link has been sent to your email. Please check your inbox.', category='success')
-            if session.get('email_confirmed'):
-                new_user = request.form.to_dict()
-                new_user.pop('password2')
-                created_user = Seller(**new_user)
-                created_user.save()
-                login_user(created_user) 
-                flash('Registration successful! Proceed to login', category='success')
+            print("the users: {}".format(created_user))
+            flash('A confirmation link has been sent to your email.', category='success')
     return render_template("seller_signup.html")
