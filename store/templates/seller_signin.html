@@ -7,6 +7,9 @@
     <title>Shoppers Home</title>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../static/Scripts/2-sellersignin.js"></script>
 </head>
     <body>
         <div class="container">
@@ -14,22 +17,24 @@
             </div>
             <div class="welcome-me">
                 <span class="hello-msg">Hello</span>
-                <span class="greetings">Welcome back Shopper!</span>
+                <span class="greetings">Welcome back Merchants!</span>
             </div>
             <div class="logging">
                 <form method="POST" action="{{ url_for('seller_auth.seller_login') }}"> 
                     <div class="content-div">
                         <div class="em-cont">
-                            <div class="texts"><span>Email</span></div>
+                            <label for="email">Email</label>
                             <input 
                                 type="email"
-                                class="the-control"
+                                class="the-control2"
                                 id="email"
                                 name="email" 
                                 placeholder="shoppit@gmail.com"
                             />
                         </div>
-                        <div class="em-cont">
+                        <div class="em-conts">
+                                <label for="password">Password</label> 
+                                <div class="m-ctrl">
                                 <input 
                                     type="password"
                                     class="the-control"
@@ -37,6 +42,8 @@
                                     name="password" 
                                     placeholder="Enter password"
                                 />
+                                <i class="far fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+                                </div>
                         </div>
                         <div class="forgot">
                             <span class="forgot">Forgot password?</span>

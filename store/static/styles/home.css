@@ -12,6 +12,12 @@
     src: url(fonts/GumelaRegular.ttf);
     
 }
+
+@font-face {
+    font-family: fontBold2;
+    src: url(fonts/SoftSemiBold.ttf);
+    
+}
 html {
     height: 100vh;
 }
@@ -23,17 +29,27 @@ html {
     
 }
 body {
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-    justify-content:  center;
     min-height: 100vh;
     margin: 0;
+}
+.main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items:  center;
+}
+.description {
+    font-size: 70px;
+    padding-top: 70px;
+    font-family: myFont;
+    font-weight: bold;
+    color: white;
 }
 
 .contain {
     margin: 0;
-    margin-bottom: 70px;
+    padding-top: 300px;
+   
 }
 .sign-up, .sign-in {
     width: 400px;
@@ -68,6 +84,11 @@ body {
         font-size: 15px;
     }
 
+    .description {
+        font-size: 45px;
+        padding-top: 70px;
+    }
+
   }
 
 @media only screen and (min-width: 768px) and (max-width: 896px) {
@@ -82,6 +103,11 @@ body {
         margin-bottom: 10px;
         font-size: 20px;
     }
+    .description {
+        font-size: 58px;
+        padding-top: 70px;
+    }
+
 }
 
 @media only screen and (min-width: 897px) and (max-width: 1024px) {
@@ -92,8 +118,13 @@ body {
         font-size: 20px;
     }
 
-  }
-  @media only screen and (min-width: 1025px) and (max-width: 1280px) {
+    .description {
+        font-size: 65px;
+        padding-top: 70px;
+    }
+
+}
+@media only screen and (min-width: 1025px) and (max-width: 1280px) {
     /* Additional styles for screens between 1025px and 1280px in width */
     /* Add more styles as needed */
     .sign-up, .sign-in {
@@ -103,6 +134,10 @@ body {
         font-size: 20px;
     }
 
+    .description {
+        font-size: 45px;
+        padding-top: 70px;
+    }
 }
 
 @media only screen and (max-width: 280px) {
@@ -113,6 +148,10 @@ body {
         height: 40px;
         margin-bottom: 10px;
         font-size: 15px;
+    }
+    .description {
+        font-size: 30px;
+        padding-top: 70px;
     }
 }
 
