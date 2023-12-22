@@ -11,6 +11,7 @@
 :root {
     --body-color: #E4E9F7;
     --sidebar-color: #FFF;
+    --border-color: rgb(228, 224, 224);
     --primary-color: black;
     --primary-color-light: #F6F5FF;
     --toggle-color: #DDD;
@@ -256,12 +257,81 @@ body.dark .switch::before {
     transition: var(--tran-05);
 }
 .home .text {
-    font-size: 30px;
+    font-size: 16px;
     font-weight: 500;
     color: var(--text-color);
     padding: 8px 40px;
+    height: 50px;
+    width: 100%;
+    border-bottom: 1px solid rgb(204, 203, 203);
 }
 .sidebar.close ~ .home {
     left: 100px;
     width: calc(100% - 100px);
+}
+.main-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    height: 110px;
+    display: grid;
+    grid-template-columns: 330px 330px 330px;;
+    grid-column-gap: 2%;
+}
+.inner-contain {
+    height: 90%;
+    border: 1px solid var( --border-color);
+    background: var(--sidebar-color);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+}
+.inner-contain .text1 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+.inner-contain .sp-text {
+    display: flex;
+    justify-content: space-between;
+    color: black;
+
+}
+.inner-contain .text2 {
+    font-size: 17px;
+    font-weight: 500;
+}
+.inner-contain .text3 {
+    color: green;
+    font-size: 14px;
+}
+.container2 {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 2fr 1fr;
+    grid-column-gap: 2%;
+
+}
+.container2 .transactions {
+    border: 1px solid var( --border-color);
+    background: var(--sidebar-color);
+    padding: 20px;
+    border-radius: 7px;
+}
+.container2 .transactions .sub-head {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+.container2 .the-customers {
+    border: 1px solid var( --border-color) ;
+    border-radius: 7px;
+    background: var(--sidebar-color);
+    padding: 20px;
 }
