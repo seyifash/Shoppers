@@ -265,10 +265,10 @@ body.dark .switch::before {
     transition: var(--tran-05);
 }
 .home .text {
-    font-size: 16px;
+    font-size: 25px;
     font-weight: 500;
     color: var(--text-color);
-    padding: 8px 40px;
+    padding: 10px 35px;
     height: 50px;
     width: 100%;
     border-bottom: 1px solid var(--border-color2);
@@ -277,172 +277,121 @@ body.dark .switch::before {
     left: 100px;
     width: calc(100% - 100px);
 }
-.main-container {
+
+body {
+    background: white;
+    position: relative;
+}
+.main-contain {
     display: flex;
-    flex-direction: column;
-    padding: 20px;
+    width: 100%;
 }
 
-.container {
-    width: 100%;
-    height: 110px;
-    display: grid;
-    grid-template-columns: 330px 330px 330px;;
-    grid-column-gap: 2%;
-}
-.inner-contain {
-    height: 90%;
-    border: 1px solid var( --border-color);
-    background: var(--sidebar-color);
-    border-radius: 10px;
+.column-1 {
+    width: 400px;
+    max-width: 400px;
+    background-color:white; 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 10px;
+    border-right: 1px solid rgb(235, 233, 233);
 }
-.inner-contain .text1 {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-color);
-}
-.inner-contain .sp-text {
-    display: flex;
-    justify-content: space-between;
+label.logo {
+    font-size: 30px;
     color: black;
+    padding: 30px 10px;
+    font-weight: medium;
+    font-family: myFont3;
+    background-color: orange; 
+    border-top-left-radius: 10px;
+}
 
-}
-.inner-contain .text2 {
-    font-size: 17px;
-    font-weight: 500;
-}
-.inner-contain .text3 {
-    color: green;
-    font-size: 14px;
-}
-.container2 {
-    display: grid;
+.home-div, .productboard {
     width: 100%;
-    grid-template-columns: 2fr 1fr;
-    grid-column-gap: 2%;
-
+    padding: 20px 40px;
+    font-family: myFont4;
+    background-color: orange;
 }
-.container2 .transactions {
-    border: 1px solid var( --border-color);
-    background: var(--sidebar-color);
-    padding: 20px;
-    border-radius: 7px;
+.productboard {
+    border-bottom-right-radius: 10px; 
 }
-.container2 .transactions .sub-head {
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 20px;
-}
-
-.container2 .transactions .sub-head .txt1 {
-    font-weight: bold;
-    color: var(--black-color);
-    font-size: 16px;
-}
-.container2 .transactions .sub-head .txt2 a{
+.column-1 a {
     text-decoration: none;
-    color: orange;
-    font-size: 14px;
+    color: black;
 }
-.container2 .the-customers {
-    border: 1px solid var( --border-color) ;
-    border-radius: 7px;
-    background: var(--sidebar-color);
+
+.home-div:hover, .productboard:hover {
+    background-color: white;
+    border-right: 1px solid  rgb(241, 236, 236);
+    border-top-right-radius: 30px; 
+    border-bottom-right-radius: 30px;
+    width: 105%;
+}
+
+.column-2 {
+    flex-grow: 1;
+    background-color: white;
     padding: 20px;
 }
-.container2 .the-customers .txt4 {
-    font-weight: bold;
-    font-size: 16px;
-    padding-bottom: 20px;
+h3 {
+    padding: 0;
+    padding-bottom: 15px;
+    font-family: myFont;
+    font-size: 30px;
+}
+.topnav {
+    width: 300px;
+    height: 45px;
+    background-color: rgb(250, 250, 250);
+    display: flex;
+    border-radius: 25px;
+}
+.topnav input {
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #cac7ff;
+    font-size: 15px;
 }
 
-.container2 .the-customers .customer-info {
+input::placeholder {
+    color: #cac7ff;
+}
+.topnav button {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding-left: 10px;
+    padding-right: 8px;
+    color: #cac7ff;
+}
+.order-content {
     display: grid;
-    width: 100%;
-    grid-template-columns: 6fr 1fr;
-    grid-column-gap: 13%;
-    font-size: 14px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    margin-top: 10px;
+    font-family: myFont5;
 }
-.container2 .the-customers .customer-info .info1 .email {
-    font-size: 12px;
-    color: var(--text-color);
-}
-.container2 .the-customers .customer-info .info1 .name {
-    color: var(--black-color);
-}
-.comp-transaction {
-    width: 100%;
-    display: block;
-}
-.comp {
+.colon-names {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-top: 30px;
     display: grid;
-    width: 100%;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-column-gap: 2%;
-    border-bottom: 1px solid var(--border-color);
-    box-shadow: 0px 1px 3px rgb(231, 230, 230);
-    padding: 15px 0;
-    border-radius: 6px;
-}
-.comp:hover {
-    transition: var(--tran-04);
-    cursor: pointer;
-}
-.comp .status .outer-span{
-    display: flex;
-    color: green;
-    margin: 0;
-    padding:0;
-    font-size: 12px;
-    justify-content: center;
-    width: 125px;
-    background: var(--completed-background);
-    align-items: center;
-    height: 26px;
-    border-radius: 17px;
-    margin-left: 3px;
-}
-.comp .status .outer-span .inner-span {
-    margin-right: 10px;
-    width: 8px;
-    height: 8px;
-    background: var(--completed-color);
-    border-radius: 50%;
-}
-.comp .payment-type span {
-    display: block;
-}
-.comp .payment-type .type {
-    color: var(--black-color);
-    font-weight: bold;
-    font-size: 14px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    font-family: myFont;
+    font-size: 25px;
+    font-weight: 400;
 }
 
-.comp .payment-type .type2 {
-    font-size: 12px;
-}
-.comp .amount-date span {
-    display:block;
-}
-.comp .amount-date .amount {
-    color: var(--black-color);
-    font-weight: bold;
-    font-size: 14px;
-} 
-.comp .amount-date .date {
-    font-size: 12px;
-}
-.comp .item {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    margin-right: 5px;
-}
-.comp .item .dots {
+.customer-name-div, .customer-order-date, .quant, .inches,
+.product-name, .price-product, .total-price {
+    font-family: myFont;
     font-size: 20px;
-    font-weight: bold;
+    margin-bottom: 30px; 
+}
+.cust-email, .date-data, .product-data, .quant-data, 
+.price-data, .total-data{
+    color: rgb(100, 100, 100);
+}
+.date-colon {
+    padding-bottom: 20px;
 }
