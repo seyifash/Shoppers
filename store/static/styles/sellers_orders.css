@@ -283,16 +283,18 @@ body.dark .switch::before {
     width: calc(100% - 100px);
     max-width: calc(100% - 100px);
 }
+
 .main {
     margin: 0;
     padding: 0;
     max-width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(9, 1fr);
+    background: var(--sidebar-color);
+    grid-column-gap: 1.5%;
+    box-shadow: 0px 3px 5px var(--border-color2);
     padding: 10px 20px;
     margin: 20px  10px;
-    background: var(--sidebar-color);
-    grid-column-gap: 1%;
 }
 .main span {
     white-space: nowrap;
@@ -312,15 +314,14 @@ body.dark .switch::before {
 }
 
 .main .customer-name .customer-colon input {
-     width: 14px;
-     margin-right: 10px;
+    width: 14px;
+    margin-right: 10px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
-  
-  /* Style the custom checkbox */
+
 .main .customer-name .customer-colon input[type="checkbox"] {
     position: relative;
     cursor: pointer;
@@ -333,7 +334,7 @@ body.dark .switch::before {
     top: -3px;
     width: 14px;
     height: 14px;
-    border: 2px solid rgb(199, 195, 195); /* Change the border color and size as needed */
+    border: 2px solid rgb(199, 195, 195); 
     background-color: #fff;
     border-radius: 5px;
 }
@@ -357,7 +358,7 @@ body.dark .switch::before {
     display: block;
     width: 15%;
     padding: 0;
-    padding-right: 30px;
+    padding-right: 5px;
 }
 .main .customer-name .customer-main3 .the-check2 input {
     width: 14px;
@@ -379,7 +380,7 @@ body.dark .switch::before {
     top: -2px;
     width: 14px;
     height: 14px;
-    border: 2px solid rgb(199, 195, 195); /* Change the border color and size as needed */
+    border: 2px solid rgb(199, 195, 195);
     background-color: #fff;
     border-radius: 5px;
 }
@@ -447,6 +448,7 @@ body.dark .switch::before {
 }
 .main .order-date .real-date,
 .main .payment-date .real-date,
+.main .payment-status .real-status,
 .main .quantity .real-date,
 .main .order-details .real-product,
 .main .order-price .real-price,
@@ -457,6 +459,7 @@ body.dark .switch::before {
     margin: 0;
     font-weight: 500;
     color: var(--text-color);
+    margin: 10px 0;
 }
 .main .payment-status {
     display: flex;
@@ -486,6 +489,7 @@ body.dark .switch::before {
     display: flex;
     padding: 0;
     margin: 0;
+    margin: 10px 0;
     font-weight: 500;
     color: var(--text-color);
 }
