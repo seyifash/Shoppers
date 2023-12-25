@@ -38,6 +38,7 @@ body {
     height: 100vh;
     background-color: var(--body-color);
     transition: var(--tran-04);
+    width: 100vw;
 }
 
 body.dark {
@@ -264,7 +265,7 @@ body.dark .switch::before {
     position: relative;
     left: 250px;
     height: 100vh;
-    width: calc(100% - 100px);
+    width: calc(100vw - 250px);
     background: var(--body-color);
     transition: var(--tran-05);
 }
@@ -280,18 +281,22 @@ body.dark .switch::before {
 .sidebar.close ~ .home {
     left: 100px;
     width: calc(100% - 100px);
+    max-width: calc(100% - 100px);
 }
 .main {
     margin: 0;
     padding: 0;
-    width: 99%;
+    max-width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     padding: 10px 20px;
     margin: 20px  10px;
     background: var(--sidebar-color);
+    grid-column-gap: 1%;
 }
-
+.main span {
+    white-space: nowrap;
+}
 .main .customer-name {
     display: flex;
     flex-direction: column;
@@ -395,4 +400,99 @@ body.dark .switch::before {
     font-size: 20px;
     color: var(--text-color);
     font-family: myFont;
+}
+.main .order-date,
+.main .payment-date,
+.main .quantity,
+.main .order-details,
+.main .order-price,
+.main .total-price {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.main .order-date .date-colon ,
+.main .payment-date .date-colon,
+.main .quantity .date-colon,
+.main .order-details .product-name,
+.main .order-price .product-price,
+.main .total-price .product-price{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding-top: 7px;
+    padding-bottom: 20px;
+}
+.main .order-date .date-colon .label-date,
+.main .payment-date .date-colon .label-date,
+.main .quantity .date-colon .label-date,
+.main .order-details .product-name .product,
+.main .order-price .product-price .price,
+.main .total-price .product-price .price {
+    font-size: 15px;
+    color: var(--black-color);
+    font-weight: 600;
+    margin-right: 7px;
+}
+
+.main .order-date .date-colon .arrow-up,
+.main .payment-date .date-colon .arrow-up,
+.main .quantity .date-colon .arrow-up,
+.main .order-details .product-name .arrow-up,
+.main .order-price .product-price .arrow-up,
+.main .total-price .product-price .arrow-up  {
+    font-size: 20px;
+    text-align: center;
+    color: var(--black-color);
+}
+.main .order-date .real-date,
+.main .payment-date .real-date,
+.main .quantity .real-date,
+.main .order-details .real-product,
+.main .order-price .real-price,
+.main .total-price .real-price  {
+    display: flex;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+    color: var(--text-color);
+}
+.main .payment-status {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.main .payment-status .status-colon {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding-top: 7px;
+    padding-bottom: 20px;
+}
+.main .payment-status .status-colon .label-status {
+    font-size: 15px;
+    color: var(--black-color);
+    font-weight: 600;
+    margin-right: 7px;
+}
+
+.main .payment-status .status-colon .arrow-up {
+    font-size: 20px;
+    text-align: center;
+    color: var(--black-color);
+}
+.main .payment-status .real-status {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+    color: var(--text-color);
+}
+.main .payment-status .real-status .span-status {
+    font-size: 14px;
+    background: rgb(248, 248, 248);
+    padding: 3px 5px;
+    color: #22f58c;
+    border-radius: 12px;
 }
