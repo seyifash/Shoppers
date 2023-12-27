@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/styles/seller_customer.css">
-    <title>Customers</title>
+    <link rel="stylesheet" href="../static/styles/sellers_uploads.css">
+    <title>Shoppers Uploads</title>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -76,34 +76,69 @@
             </div>
         </nav>
         <section class="home">
-            <div class="text">Customers</div>
-            <div class="main">
-                <div class="customer-name">
-                    <div class="colon-name">
-                        <span class="n-colon">Customers</span>
-                    </div>
-                    <div class="real-colon">
-                        <span class="c-name">Thomas wellington</span>
-                    </div>
+            <div class="main2">
+            <form id="uploadForm" enctype="multipart/form-data" method="POST"  action="{{ url_for('seller_views.sellerViews') }}">
+                <div class="main">
+                <label for="productName">Product Name:</label>
+                <input 
+                type="text" 
+                id="productName"
+                name="productName" 
+                class="the-control"
+                />
                 </div>
-                <div class="email">
-                    <div class="colon-email">
-                        <span class="E-colon">Email</span>
-                    </div>
-                    <div class="real-email">
-                        <span class="c-email">thomaswellington@gmail.com</span>
-                    </div>
+            
+                <div class="main">
+                <label for="productPrice">Product Price:</label>
+                <input 
+                    type="number" 
+                    id="productPrice" 
+                    name="productPrice" 
+                    class="the-control" 
+                />
                 </div>
-                <div class="reviews">
-                    <div class="colon-reviews">
-                        <span class="E-colon">Reviews</span>
+            
+                <div class="main">
+                    <label for="productPricePerInch">Product Sizes:</label>
+                    <input 
+                        type="number" 
+                        id="productPricePerInch" 
+                        name="productPricePerInch" 
+                        class="the-control" 
+                    />
                     </div>
-                    <div class="real-reviews">
-                        <span class="c-reviews">Delivery was quick.No hassle.</span>
-                    </div>
+                <div class="main">
+                <label for="productGram">Product Gram:</label>
+                <input 
+                    type="number"
+                    id="productQuantity" 
+                    name="productQuantity" 
+                    class="the-control" 
+                 />
                 </div>
-            </div>
+                <div class="main">
+                <label for="productColor">Product Color:</label>
+                <input type="text"
+                    id="productColor"
+                    name="productColor" 
+                    class="the-control"
+                />
+                </div>
+            
+                <div class="main">
+                <label for="productImage">Product Image:</label>
+                <input type="file" 
+                    id="productImage" 
+                    name="productImage" 
+                    accept="image/*" 
+                    class="the-control"
+                />
+                </div>
+            
+                <button type="submit" class="primary-btn">Upload Product</button>
+            </form>
+        </div>
         </section>
-        <script src="../static/Scripts/1s-dashboard.js"></script>
+        <script src="../static/Scripts/1s-dashboard.js"></script> 
     </body>
-    </html>
+</html>
