@@ -10,8 +10,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="../static/Scripts/2-sellersignin.js"></script>
+    <script src="../static/Scripts/1-seller.js"></script>
 </head>
     <body>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        {% if category == 'error' %}
+        <div class="the-alert-danger">
+            {{ message }}
+            <button type="button" class="danger-btn" data-dismiss="danger-btn">
+                <span aria-hidden="true" class="the_alert">&times;</span>
+            </button>
+        </div>
+        {% else %}
+        <div class="the-alert-success">
+            {{ message }}
+            <button type="button" class="close-btn" data-dismiss="alert">
+                <span aria-hidden="true" class="the-alert">&times;</span>
+            </button>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
         <div class="container">
             <div class="logo">
             </div>

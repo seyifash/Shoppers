@@ -13,7 +13,7 @@ from decouple import config
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'Ayomide'
-    app.config['UPLOAD_FOLDER'] = r'website\static\uploads'
+    app.config['UPLOAD_FOLDER'] = r'store\static\uploads'
     app.config['MAIL_SERVER'] = config('MAIL_SERVER', default='smtp.gmail.com')
     app.config['MAIL_PORT'] = config('MAIL_PORT', default=465, cast=int)
     app.config['MAIL_USE_SSL'] = config('MAIL_USE_SSL', default=True, cast=bool)

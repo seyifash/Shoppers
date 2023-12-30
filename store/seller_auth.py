@@ -60,12 +60,13 @@ def seller_login():
         if existingUser:
             if password2 == existingUser.password:
                 login_user(existingUser)
-                return redirect(url_for('seller_views.sellerViews'))
+                print('you are getting in')
+                return redirect(url_for('seller_views.sellers_dashboard'))
             else:
                 flash('Incorrect password, try again', category='error') 
         else:
             flash('Email does not exist', category='error')      
-    return render_template("seller_login.html")
+    return render_template("seller_signin.html")
 
 @seller_auth.route('/seller_logout')
 @login_required

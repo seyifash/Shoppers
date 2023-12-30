@@ -6,4 +6,4 @@ class Category(BaseModel, Base):
     """creates a new product"""
     __tablename__ = 'category'
     name = Column(String(255), nullable=False)
-    products = relationship('Product', backref='category')
+    products_category = relationship('Product', back_populates='category')

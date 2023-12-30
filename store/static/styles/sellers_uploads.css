@@ -39,6 +39,7 @@ body {
     background-color: var(--body-color);
     transition: var(--tran-04);
     width: 100vw;
+    overflow-x: hidden;
 }
 
 body.dark {
@@ -298,7 +299,8 @@ body.dark .switch::before {
     display: flex;
     align-items: center;
     margin: 20px;
-  }
+    background: white;
+}
 .main {
     display: flex;
     flex-direction: column;
@@ -308,7 +310,13 @@ body.dark .switch::before {
     padding: 10px 20px;
     
 }
-input {
+label {
+    padding: 10px 0px;
+    font-family: myFont;
+    font-size: 20px;
+    font-weight: 600;
+}
+.the-control, input {
     outline: none;
     border: 1px solid var(--primary-color);
     height: 30px;
@@ -323,7 +331,4 @@ button {
     border: 1px solid var(--sidebar-color);
     border-radius: 6px;
     margin: 10px;
-}
-button[type=submit] {
-
 }
