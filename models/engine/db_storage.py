@@ -8,6 +8,7 @@ import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm.session import sessionmaker
+from datetime import datetime, timedelta
 
 classes = {"User": User, "Product": Product, "Seller": Seller, "Order": Order, "Category": Category}
 
@@ -63,7 +64,7 @@ class DBStorage:
             if cls in classes.values():
                 count = len(self.all(cls))
         else:
-             count = len(self.all())
+            count = len(self.all())
         
         return count
     
@@ -99,3 +100,44 @@ class DBStorage:
                 results.append((order, user))
 
         return results 
+    
+    def today_sales(self, seller_id):
+        total_order = 0
+        percentage_of_order = 0
+        base_value = 100
+        seller = self.get_user_by_id(Seller, seller_id)
+        if seller:
+            today_start = datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0)
+            today_end = today_start + timedelta(days=1)
+            todays_order = [order for order in seller.orders if today_start <= order.created_at < today_end]
+            total_order = sum(order.total for order in todays_order)
+            if total_order > 0:
+                percentage_of_order = (total_order / base_value) * 100
+                
+        return total_order, percentage_of_order
+    
+    def total_sales(self, seller_id):
+        total_order = 0
+        percentage_of_order = 0
+        base_value = 100
+        seller = self.get_user_by_id(Seller, seller_id)
+        if seller:
+            todays_order = [order for order in seller.orders ]
+            total_order = sum(order.total for order in todays_order)
+            if total_order > 0:
+                percentage_of_order = (total_order / base_value) * 100
+                
+        return total_order, percentage_of_order
+    
+    def total_orders(self, seller_id):
+        total_order = 0
+        percentage_of_order = 0
+        base_value = 100
+        seller = self.get_user_by_id(Seller, seller_id)
+        if seller:
+            total_order = len(seller.orders)
+            if total_order > 0:
+                percentage_of_order = (total_order / base_value) * 100 
+            
+        return total_order, percentage_of_order
+            
