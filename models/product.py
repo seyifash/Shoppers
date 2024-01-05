@@ -7,7 +7,7 @@ from sqlalchemy.orm import relationship
 class Product(BaseModel, Base):
     """creates a new product"""
     __tablename__ = 'product'
-    productName = Column(String(255), nullable=False)
+    BrandName = Column(String(255), nullable=False)
     productPrice = Column(Integer, nullable=False)
     productSize = Column(Text, nullable=False)
     productDescription = Column(Text, nullable=False)

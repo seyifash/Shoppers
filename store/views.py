@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, jsonify, session
 
 views = Blueprint('views', __name__)
 
-@views.route('/')
+@views.route('/', methods=['GET', 'POST'])
 def store():
     return render_template("store.html")
 
