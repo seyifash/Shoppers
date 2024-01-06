@@ -12,24 +12,39 @@
     src: url(Quesha.ttf);
 }
 
+@font-face {
+    font-family: myFont2;
+    src: url(Romana/Romana.ttf);
+}
 html {
-    width: 100vw;
-    height: 100vh;
+    font-size: 16px;
+    color: black;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
     background: white;
+    position: relative;
 }
 header {
+    position: fixed;
+    top: 0;
     height: 50px;
+    margin-top: 0;
     width: 100%;
+    transition: 0.3s;
+    background: white;
 }
-.the-headers .header-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+header .header-container {
     width: 100%;
     height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     justify-content: space-between;
-    border: 1px solid rgb(236, 233, 233);
 }
-.the-headers .header-container .shipping-sales{
+header .header-container .shipping-sales{
     font-size: 10px;
     display: flex;
     align-items: center;
@@ -39,16 +54,95 @@ header {
     justify-content: center;
     align-items: flex-end;
 }
-.the-headers .header-container .Business-name .head-cont {
+header .header-container .Business-name .head-cont {
     font-family: myFont;
     font-size: 40px;
 }
-.the-headers .header-container .user-nav {
+header .header-container .user-nav {
     display: flex;
     justify-content: flex-end;
     font-size: 18px;
     align-items: flex-end;
 }
-.the-headers .header-container .user-nav span {
+header .header-container .user-nav span {
     padding-right: 20px;
+}
+.categories {
+    position: fixed;
+    top: 50px;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    background: white;
+}
+.categories .categories-name {
+    padding-right: 15px;
+    font-weight: 500;
+    padding-bottom: 10px;
+}
+
+
+
+.cat-name {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: flex-end;
+    margin-top: 110px;
+    background: white;
+}
+.cat-name .goods-category {
+    padding-left: 10px;
+    font-family: myFont2;
+    font-size: 30px;
+}
+
+
+.main {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 300px 300px 300px 300px;
+    grid-column-gap: 2%;
+    justify-content: center;
+    margin-top: 10px;
+    background: white;
+}
+.main .pics-description {
+    width: 100%;
+    display: block;
+    margin: 20px auto;
+
+}
+.main .pics-description .images {
+    width: 100%;
+    height: 350px;
+    margin-bottom: 20px;
+}
+.main .pics-description .images img{
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 500px;
+    border-radius: 2px;
+}
+.loading {
+    position: absolute;
+    background: white;
+    width: 40px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    right: 0;
+    font-size: 30px;
+}
+.loading img {
+    width: 60%;
+    height: 70%;
+    background-repeat: no-repeat;
+    border: 1px solid grey;
 }
