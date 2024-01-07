@@ -36,6 +36,7 @@ header {
     width: 100%;
     transition: 0.3s;
     background: white;
+    z-index: 1000;
 }
 header .header-container {
     width: 100%;
@@ -77,6 +78,7 @@ header .header-container .user-nav span {
     justify-content: center;
     font-size: 12px;
     background: white;
+    z-index: 1000;
 }
 .categories .categories-name {
     padding-right: 15px;
@@ -105,21 +107,30 @@ header .header-container .user-nav span {
     width: 100%;
     display: grid;
     grid-template-columns: 300px 300px 300px 300px;
-    grid-column-gap: 2%;
+    grid-column-gap: 2px;
     justify-content: center;
     margin-top: 10px;
     background: white;
+    margin: 20px auto;
 }
 .main .pics-description {
-    width: 100%;
+    width: 85%;
     display: block;
-    margin: 20px auto;
-
+    margin: 20px 0;
+    z-index: 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 .main .pics-description .images {
+    display: block;
     width: 100%;
-    height: 350px;
     margin-bottom: 20px;
+    position: relative;
+    height: 350px;
+}
+.main .pics-description .images .images2 {
+    width: 100%;
+    height: 100%;
 }
 .main .pics-description .images img{
     width: 100%;
@@ -128,7 +139,7 @@ header .header-container .user-nav span {
     background-size: 500px;
     border-radius: 2px;
 }
-.loading {
+.main .pics-description .images .loading {
     position: absolute;
     background: white;
     width: 40px;
@@ -140,9 +151,24 @@ header .header-container .user-nav span {
     right: 0;
     font-size: 30px;
 }
-.loading img {
+.main .pics-description .images .loading img {
     width: 60%;
-    height: 70%;
+    height: 60%;
     background-repeat: no-repeat;
-    border: 1px solid grey;
+}
+.description span {
+    display: block;
+    font-size: 14px;
+    font-family: myFont2;
+    padding-bottom: 4px;
+}
+.description .brandname {
+    font-weight: 600;
+}
+.pics-description:hover {
+    background-color: white;
+    transform: scale(1.10);
+    border: 1px solid rgb(247, 247, 247);
+    box-shadow: 5px 5px 5px rgb(231, 230, 230);
+    padding: 0px 10px;
 }
