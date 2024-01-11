@@ -4,12 +4,28 @@
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 @font-face {
     font-family: myFont;
     src: url(Quesha.ttf);
+}
+
+@font-face {
+    font-family: myFont2;
+    src: url(Romana/Romana.ttf);
+}
+html {
+    font-size: 16px;
+    color: black;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    background: white;
+    position: relative;
 }
 
 :root {
