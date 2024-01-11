@@ -11,13 +11,27 @@
     font-family: myFont;
     src: url(Quesha.ttf);
 }
+html {
+    font-size: 16px;
+    color: black;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background: white;
+    position: relative;
+}
 
 .head-bar {
+    position: fixed; 
+    top: 0;
+    margin-top: 0;
+    background: white;
+    width: 100%;
+    height: 100px;
     display: block;
     padding: 0px 30px 0 30px;
-    width: 100%;
-    height: 120px;
-    border-bottom: 1px solid rgb(238, 236, 236);
 }
 .nav-bar {
     display: flex;
@@ -25,13 +39,15 @@
     height: 50%;
     justify-content: space-between;
     align-items: flex-end;
-    border-bottom: 1px solid rgb(245, 243, 243);
+}
+.nav-bar .business-name {
+    font-family: myFont;
+    font-size: 40px;
 }
 .details {
     display: flex;
     height: 100%;
-    padding-top: 20px;
-    border: 1px solid brown;
+    align-items: flex-end;
 
 }
 
@@ -45,28 +61,33 @@
 }
 .cart span {
     display: block;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 600;
-    line-height: 13px;
+    line-height: 12px;
     text-align: center;
 }
 
 .cart .envelope i {
-    font-size: 22px;
+    font-size: 18px;
     color: black
 }
 .cart-update {
     position: absolute; 
-    width: 15px;
-    height: 15px;
+    width: 13px;
+    height: 13px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    background: orange;
-    font-size: 8px;
+    background: yellow;
     top: -15%;
     right: 20%;
+    color: black;
+}
+.cart-update span {
+    display: flex;
+    font-size: 10px;
+    font-weight: 600;
 }
 .favorites {
     display: block;
@@ -76,13 +97,13 @@
 }
 .favorites span {
     display: block;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 600;
-    line-height: 13px;
+    line-height: 12px;
     text-align: center;
 }
 .favorites .fclass i {
-    font-size: 22px;
+    font-size: 18px;
     color: black
 }
 .image {
@@ -94,8 +115,80 @@
     display: block;
     font-size: 0px;
     font-weight: 600;
-    line-height: 13px;
+   
     text-align: center;
 }.image span i {
-    font-size: 42px;
+    font-size: 45px;
+}
+.category {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(243, 241, 241);
+}
+.category span {
+    display: flex;
+    margin: 0 15px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.category .v-category1 {
+    margin: 0;
+}
+.category .active {
+    color: red;
+}
+.product-info {
+    display: flex;
+    width: 100%;
+    height: 500px;
+    margin-top: 130px;
+    padding:  0 30px;
+}
+.product-pics {
+    display: block;
+    width: 40%;
+    height: 100%;
+    margin-right: 20px;
+}
+ .largeview {
+    width: 100%;
+    height: 80%;
+    padding-bottom: 15px;
+}
+.largeview img{
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+}
+.product-info .product-pics .small-view {
+    display: flex;
+    width: 100%;
+    height: 20%;
+}
+.small-view .small-1 {
+    width: 19%;
+    height: 100%;
+    margin-left: 10px;
+}
+.small-view .small-1 img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+.small-view .active {
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-left: 0;
+
+}
+.small-view .small-1 img:hover {
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.info {
+    margin-left: 50px;
 }

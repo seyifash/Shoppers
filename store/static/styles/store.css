@@ -91,18 +91,13 @@ header .header-container .user-nav span {
     border-radius: 5px;
     padding:6px 5px 6px 5px;
 }
-.categories .categories-name:hover {
+.categories .active,.categories .categories-name:hover {
     background-color: black;
     color: white;
     border-radius: 5px;
     padding:6px 5px 6px 5px;
     cursor: pointer;
     transition: all 0.5s ease;
-}
-.categories .categories-name1:hover {
-    margin-left: 8px;
-    transition: all 0.5s ease;
-    cursor: pointer;
 }
 
 
