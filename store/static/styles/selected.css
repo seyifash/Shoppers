@@ -153,7 +153,7 @@ body {
 }
 .product-pics {
     display: block;
-    width: 40%;
+    width: 50%;
     height: 100%;
     margin-right: 20px;
 }
@@ -196,10 +196,9 @@ body {
 }
 .info {
     margin-left: 50px;
-    width: 50%;
+    width: 40%;
     height: 100%;
     display: block;
-    border: 1px solid pink;
 }
 .info .brandname {
     display: flex;
@@ -210,11 +209,12 @@ body {
     color: black;
     background: white;
     font-weight: 600;
+    font-family: myFont2;
 }
 .info .product-desc {
     display: flex;
     width: 100%;
-    padding: 10px 0;
+    padding: 15px 0;
     font-size: 30px;
     font-weight: 600;
     font-family: myFont2;
@@ -225,14 +225,15 @@ body {
     font-size: 35px;
     font-weight: 600;
     font-family: myFont2;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 
 .info .product-color{
     display: flex;
     width: 100%;
     font-size: 12px;
-    color: rgb(192, 190, 190);
+    color: #d3d8b1;
+    margin-bottom: 10px;
 }
 .info .product-color .col1 {
     display: flex;
@@ -249,8 +250,25 @@ body {
     display: block;
     width: 100%;
 } 
+.size .size-name {
+    display: flex;
+    width: 100%;
+    font-size: 12px;
+    color: #d3d8b1;;
+}
+.size .size-name .col2 {
+    display: flex;
+    font-size: 14px;
+    font-family: myFont2;
+    font-weight: 600;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+.size .size-name .active {
+    color: black;
+}
 .size .size-btn {
-    width: 80%;
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-column-gap: 10px;
@@ -265,4 +283,69 @@ body {
     align-items: center;
     border-radius: 5px;
     font-weight: 600;
+    transition: ease 0.5s all
+}
+.size .size-btn  .size-button:hover {
+    background: black;
+    color: white;
+}
+.size .size-info {
+    display: flex;
+    width: 100%;
+    font-size: 12px;
+    padding: 10px 0;
+    font-weight: 600;
+    color: #dede16;
+    font-family: myFont2;
+}
+.add-cart {
+    width: 100%;
+    display: block;
+    margin-top: 25px;
+}
+.add-cart .add-btn {
+    display: flex;
+    width: 100%;
+}
+.add-cart .add-btn  .add-cart-btn {
+    display: flex;
+    width: 90%;
+    height: 50px;
+    background: black;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    border-radius:10px;
+    font-size: 14px;
+    transition: ease 0.5s all;
+}
+.add-cart .add-btn  .add-cart-btn i {
+    padding-right: 7px;
+    font-size: 22px;
+}
+.add-cart .add-btn  .add-cart-btn:hover{
+    background: yellow;
+    color: black;
+}
+.add-cart .add-btn .favit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    height: 50px;
+    background: #eff5c7;
+    border-radius: 10px;
+    font-size: 22px;
+}
+.add-cart .delivery-info {
+    display: flex;
+    width: 100%;
+    font-size: 12px;
+    font-weight: 600;
+    align-items: baseline;
+    padding-top: 10px;
+}
+.add-cart .delivery-info i {
+    font-size: 20px;
 }
