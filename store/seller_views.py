@@ -85,17 +85,19 @@ def sellers_uploads():
         print(created_product)
         created_product.save()
         product_id = created_product.id
+        print("pid: {}".format(product_id))
         if 'productImage' in request.files:
-            uploaded_files = request.files.getlist['productImage']
+            uploaded_files = request.files.getlist('productImage')
             for uploaded_file in uploaded_files:
                 if uploaded_file.filename != '' and allowed_file(uploaded_file.filename):
+                    print("files: {}".format(uploaded_file.filename))
                     filename = secure_filename(uploaded_file.filename)
                     file_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
                     # Save the file to a folder
                     uploaded_file.save(file_path)
                     # Set the 'productImage' field to the file path
                     new_image = ProductImage(product_id=product_id, image_filename=file_path)
-                    new_image.save
+                    new_image.save()
                 else:
                     flash('Invalid or missing file. Please upload a valid image file.', category='error')
     return render_template('sellers_upload.html')
