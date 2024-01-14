@@ -16,9 +16,17 @@ def store():
                 break
     return render_template("store.html", all_product=all_product, all_images=all_images)
 
-@views.route('/selected_item')
-def selected_cart():
-    return render_template("selected_item.html")
+@views.route('/selected_item/<productId>', methods=['GET'])
+def selected_cart(productId):
+    selectedItem = storage.get_user_by_id(Product, productId)
+    all_images = storage.get_product_images(ProductImage, productId)
+    if all_images:
+        for images in all_images:
+            print("All images:{}".format(images.image_filename))   
+    else:
+        print("no image")
+    
+    return render_template("selected_item.html", selectedItem=selectedItem, all_images=all_images)
 
 @views.route('/cart')
 def cart():

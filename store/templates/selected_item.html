@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html lan="en">
+<html lan="en" dir="ltr">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../static/styles/selected.css">
-        <title>Shoppers Home</title>
+        <title>Shoppers - Choice</title>
+        <meta name="description" content="Shoppers is an online store for men">
+        <link rel="icon" type="image/x-icon" href="./favicon.ico">
+        <link rel="icon" type="image/png" href="./favicon.png">
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="../static/styles/selected.css">
     </head>
     <body>
         <header class="head-bar">
@@ -46,27 +49,32 @@
                 <span class="v-category active">Sale</span>
             </div>
         </header>
-        <div class="product-info">
+        <div class="product-info" productId="{{ selectedItem.id }}">
             <div class="product-pics">
+                {% set product_images = all_images|selectattr('product_id', 'equalto', selectedItem.id)|list %}
+                {% set product_image = product_images|first %}
+                {% if product_image %}
                 <div class="largeview">
-                    <img src="../static/images/bracelet.jpg">
+                    <img src="{{  product_image.image_filename|replace('store', '..') }}">
                 </div>
+                {% endif %}
                 <div class="small-view">
-                    <div class="small-1 active"><img src="../static/images/bracelet.jpg"></div>
-                    <div class="small-1"><img src="../static/images/bracelet2.jpg"></div>
-                    <div class="small-1"><img src="../static/images/bracelet3.jpg"></div>
-                    <div class="small-1"><img src="../static/images/bracelet5.jpg"></div>
-                    <div class="small-1"><img src="../static/images/bracelet.jpg"></div>
+                    {% for images in all_images %}
+                    <div class="small-1 {% if loop.index == 1 %}active{% endif %}">
+                        <img src="{{ images.image_filename|replace('store', '..') }}">
+                    </div>
+                    {% endfor %}
+                    
                 </div>
             </div>
             <div class="info">
-                <div class="brandname"><span class="brand">Versace</span></div>
-                <div class="product-desc">Versace Gold Bracelet</div>
-                <div class="price">&#8358;199.00</div>
+                <div class="brandname"><span class="brand">{{ selectedItem.BrandName }}</span></div>
+                <div class="product-desc">{{selectedItem.productDescription }}</div>
+                <div class="price">&#8358;{{ selectedItem.productPrice }}</div>
                 <div class="product-color">
                     <span class="col1 active">Color</span>
                      <span class="col1">&#x2022;</span> 
-                     <span class="col1">Gold</span>
+                     <span class="col1">{{ selectedItem.productColor }}</span>
                 </div>
                 <div class="size">
                     <div class="size-name">
@@ -74,17 +82,17 @@
                          <span class="col2">&#x2022;</span> 
                          <span class="col2">Cm's</span>
                     </div>
+                    {% if selectedItem and selectedItem.productSize %}
+                    {% set size_list = selectedItem.productSize .split(',') %}
                     <div class="size-btn">
-                        <div class="size-button">40.5</div>
-                        <div class="size-button">41</div>
-                        <div class="size-button">42</div>
-                        <div class="size-button">43</div>
-                        <div class="size-button">43.5</div>
-                        <div class="size-button">44</div>
-                        <div class="size-button">44.5</div>
-                        <div class="size-button">45</div>
-                        <div class="size-button">46</div>
+                        {% for size in size_list %}
+                        <div class="size-button">{{ size }}</div>
+                        {% endfor %}
                     </div>
+                    {% else %}
+                    <p>No size information available for this product.</p>
+                    {% endif %}
+
                     <span class="size-info">Size guide</span>
                 </div>
                 <div class="add-cart">
@@ -93,7 +101,7 @@
                         <div class="favit"><i class='bx bx-heart'></i></div>
                     </div>
                     <div class="delivery-info">
-                        <span class="del-info"><i class='bx bxs-truck'></i> Free delivery on orders over &#8358;100.0</span>
+                        <span class="del-info"><i class='bx bxs-truck'></i> Free delivery on orders over &#8358;50000.0</span>
                     </div>
                 </div>
             </div>

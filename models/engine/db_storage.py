@@ -87,6 +87,12 @@ class DBStorage:
             l = [l for l in cls_items.values() if l.user_id == user_id]
             return l
         return None
+    def get_product_images(self, cls, product_id):
+        if cls in classes.values():
+            clsItems = self.all(cls)
+            image = [image for image in clsItems.values() if image.product_id == product_id]
+            return image
+        return None
     
     def get_sellers_orders(self, seller_id):
         results = []

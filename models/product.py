@@ -9,7 +9,9 @@ class Product(BaseModel, Base):
     __tablename__ = 'product'
     BrandName = Column(String(255), nullable=False)
     productPrice = Column(Integer, nullable=False)
+    productColor = Column(Text, nullable=False)
     productSize = Column(Text, nullable=False)
+    productMeasurement = Column(Text, nullable=False)
     productDescription = Column(Text, nullable=False)
     productCategory = Column(String(255), nullable=False)
     seller_id = Column(String(60), ForeignKey('seller.id'), nullable=False)

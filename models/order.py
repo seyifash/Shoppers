@@ -10,6 +10,7 @@ class Order(BaseModel, Base):
     productQuantity = Column(Integer, nullable=False)
     productSize = Column(Text, nullable=False)
     productTotal = Column(Integer, nullable=False)
+    paymentStatus = Column(String(255), nullable=False)
     user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
     seller_id = Column(String(60), ForeignKey('seller.id'), nullable=False)
     product_id = Column(String(60), ForeignKey('product.id'), nullable=False)
