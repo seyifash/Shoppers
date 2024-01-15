@@ -270,8 +270,8 @@ body {
 .size .size-btn {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-column-gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap: 5px;
     grid-row-gap: 10px;
 }
 .size .size-btn  .size-button{

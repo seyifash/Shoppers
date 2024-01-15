@@ -12,43 +12,56 @@ seller_auth = Blueprint('seller_auth', __name__)
 
 
 
-def send_confirmation_email(email):
-    serializer = current_app.config['serializer']
-    mail = current_app.config['mail'] 
-    token = serializer.dumps(email, salt='seller-email-confirm')
-    confirm_url = url_for('seller_auth.confirm_email', token=token, _external=True)
-    msg = Message('Confirm Your Email', sender='oluwaseyiluxury@gmail.com', recipients=[email])
-    msg.body = f'To confirm your email, click on the following link: {confirm_url}'
-    mail.send(msg)
+def send_confirmation_email(email, new_user):
+    try:
+        serializer = current_app.config['serializer']
+        mail = current_app.config['mail'] 
+        token = serializer.dumps({'email': email, 'new_user': new_user}, salt='seller-email-confirm')
+        confirm_url = url_for('seller_auth.confirm_email', token=token, _external=True)
+        msg = Message('Confirm Your Email', sender='oluwaseyiluxury@gmail.com', recipients=[email])
+        msg.body = f'To confirm your email, click on the following link: {confirm_url}'
+        mail.send(msg)
+        return True
+    except Exception as e:
+         print(f"Error in sending confirmation email: {e}")
+         return False
+
     
 
 @seller_auth.route('/confirm_email/<token>', methods=['GET'])    
 def confirm_email(token):
     serializer = current_app.config['serializer']
     try:
-        email = serializer.loads(token, salt='seller-email-confirm', max_age=3600)
-        user = storage.get_by_email(Seller, email)
-        print(user)
-        print(email)
-
-        if user:
-            print("my user: {}".format(user))
-            try:
-                user.confirm_email()
-                storage.save()
-                print("users again: {}".format(user))
-                return redirect(url_for('seller_auth.seller_login'))
-            except Exception as e:
-                print(f"Error in confirm_email: {e}")
-                return render_template('confirmation_errors.html')
-        else:
-            flash('User not found.', category='error')
-            return render_template('confirmation_errors.html')
+        data = serializer.loads(token, salt='seller-email-confirm', max_age=3600)
+        email = data.get('email')
+        user_data = data.get('new_user')
+        print("the user: {}".format(user_data))
+        print("The email: {}".format(email))
+        users = storage.get_by_email(Seller, email)
+        if not users:
+            if user_data:
+                new_user = Seller(**user_data)
+                new_user.save()
+                try:
+                    user = storage.get_by_email(Seller, email)
+                    if user:
+                        user.confirm_email()
+                        storage.save()
+                        print("Created user and is confirmed: {}".format(user))
+                        return redirect(url_for('seller_auth.account_update'))
+                except Exception as e:
+                    print(f"Error in confirm_email: {e}")
+                    return redirect(url_for('confirmation_errors.html'))
     except SignatureExpired:
         return render_template('confirmation_errors.html')
     except Exception as e:
         print(f"Error in confirm_email: {e}")
         return render_template('confirmation_error.html')
+
+
+@seller_auth.route('/Account_status', methods=['GET'])
+def account_update():
+    return render_template('successconfirmed.html')
 
 @seller_auth.route('/seller_login', methods=['GET', 'POST'])
 def seller_login():
@@ -99,9 +112,7 @@ def sign_up():
         else:
             new_user = request.form.to_dict()
             new_user.pop('password2')
-            created_user = Seller(**new_user)
-            created_user.save()
-            send_confirmation_email(email)
-            print("the users: {}".format(created_user))
-            flash('A confirmation link has been sent to your email.', category='success')
+            result = send_confirmation_email(email, new_user)
+            if result:
+                flash('A confirmation link has been sent to your email. Click on it verify email and create account.', category='success')
     return render_template("seller_signup.html")

@@ -69,18 +69,18 @@
             </div>
             <div class="info">
                 <div class="brandname"><span class="brand">{{ selectedItem.BrandName }}</span></div>
-                <div class="product-desc">{{selectedItem.productDescription }}</div>
+                <div class="product-desc">{{ selectedItem.productDescription }}</div>
                 <div class="price">&#8358;{{ selectedItem.productPrice }}</div>
                 <div class="product-color">
                     <span class="col1 active">Color</span>
-                     <span class="col1">&#x2022;</span> 
-                     <span class="col1">{{ selectedItem.productColor }}</span>
+                    <span class="col1">&#x2022;</span> 
+                    <span class="col1">{{ selectedItem.productColor }}</span>
                 </div>
                 <div class="size">
                     <div class="size-name">
                         <span class="col2 active">Size</span>
-                         <span class="col2">&#x2022;</span> 
-                         <span class="col2">Cm's</span>
+                        <span class="col2">&#x2022;</span> 
+                        <span class="col2">{{ selectedItem.productMeasurement }}</span>
                     </div>
                     {% if selectedItem and selectedItem.productSize %}
                     {% set size_list = selectedItem.productSize .split(',') %}
