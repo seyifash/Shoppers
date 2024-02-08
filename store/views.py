@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify, session
+"""from flask import Blueprint, render_template, request, jsonify, session
 from models import storage
 from models.product import Product, ProductImage
 
@@ -35,3 +35,4 @@ def cart():
 @views.route('/checkout', methods=['GET'])
 def checkout():
     return render_template("checkout.html")
+    """

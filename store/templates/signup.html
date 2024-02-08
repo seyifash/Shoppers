@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles/seller-signup.css">
+    <title>Merchant sign-up</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../static/Scripts/1-seller.js"></script>
+    <script src="../static/Scripts/2-sellersignin.js"></script>
+</head>
+    <body>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    {% if category == 'error' %}
+    <div class="the-alert-danger">
+        {{ message }}
+        <button type="button" class="danger-btn" data-dismiss="danger-btn">
+            <span aria-hidden="true" class="the_alert">&times;</span>
+        </button>
+    </div>
+    {% else %}
+    <div class="the-alert-success">
+        {{ message }}
+        <button type="button" class="close-btn" data-dismiss="alert">
+            <span aria-hidden="true" class="the-alert">&times;</span>
+        </button>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="container">
+        <div class="logo">
+        </div>
+        <div class="welcome-me">
+            <span class="hello-msg">Hello</span>
+            <span class="greetings">Welcome Merchants!</span>
+        </div>
+        <div class="sign-up">
+            <form method="POST">
+                <div class="content-div">
+                    <div class="em-cont">
+                        <label for="email">Email</label>
+                        <input 
+                            type="email"
+                            class="the-control2"
+                            id="email"
+                            name="email" 
+                            placeholder="Enter email"
+                        />
+                    </div>
+                    <div class="em-cont">
+                        <label for="first_name">First Name</label>
+                        <input 
+                            type="text"
+                            class="the-control2"
+                            id="first_name"
+                            name="first_name" 
+                            placeholder="Enter your first name"
+                        />
+                    </div>
+                    <div class="em-cont">
+                        <label for="last_name">Last Name</label>
+                        <input 
+                            type="text"
+                            class="the-control2"
+                            id="last_name"
+                            name="last_name" 
+                            placeholder="Enter Last Name"
+                        />
+                    </div>
+                    <div class="em-cont">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input 
+                            type="number"
+                            class="the-control2"
+                            id="phoneNumber"
+                            name="phoneNumber" 
+                            placeholder="Enter Last Name"
+                        />
+                    </div>
+                    <div class="em-cont">
+                        <label for="password">Password</label>
+                        <div class="m-ctrl">
+                        <input 
+                            type="password"
+                            class="the-control"
+                            id="password"
+                            name="password" 
+                            placeholder="Enter password"
+                            />
+                            <i class="far fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+                        </div>
+                    </div>
+                    <div class="em-cont">
+                        <label for="password2">Password</label>
+                        <div class="m-ctrl">
+                        <input 
+                            type="password"
+                            class="the-control"
+                            id="password2"
+                            name="password2" 
+                            placeholder="Confirm password"
+                        />
+                        <i class="far fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+                        </div>
+                    </div>
+                    <br />
+                    <button type="submit" class="primary-btn">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

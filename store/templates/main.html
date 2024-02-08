@@ -3,44 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Shoopers{% endblock %}</title>
+    <title>Shoppers - Homepage</title>
+    <meta name="description" content="Shoppers is an online store for men">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="icon" type="image/png" href="./favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://www.flaticon.com/free-icons/others" >
+    <link href='../static/styles/store.css' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="../static/styles/selected.css">
 </head>
 <body>
-    <form method="POST" action="/upload-product" id="productForm">
-        <!-- Other form fields for product details -->
+    <div id="main-content">
+    {% block content %} 
+    {% endblock content %} 
+    </div> 
     
-        <div id="sizeInputs">
-            <label for="size">Sizes:</label>
-            <input type="text" class="sizeInput" id="sizeInput" placeholder="Enter size" required>
-            <button type="button" onclick="addSize()">Add Size</button>
-            <div id="displaySizes"></div>
-            <input type="hidden" name="sizes[]" id="sizesArray">
-        </div>
-    
-        <!-- Submit button -->
-        <button type="submit">Upload Product</button>
-    </form>
-    
-    <!-- JavaScript for dynamic sizing -->
-    <script>
-        const sizes = [];
-    
-        function addSize() {
-            const sizeInput = document.getElementById('sizeInput');
-            const displaySizes = document.getElementById('displaySizes');
-            const sizesArray = document.getElementById('sizesArray');
-    
-            const sizeValue = sizeInput.value.trim();
-    
-            if (sizeValue) {
-                sizes.push(sizeValue);
-                displaySizes.innerHTML = sizes.join(', ');
-                sizeInput.value = '';
-                sizesArray.value = JSON.stringify(sizes);
-            }
-        }
-    </script>
-    
+    <script src="../static/Scripts/2-store.js"></script>
+    <script src="../static/Scripts/1-selected.js"></script> 
 </body>
 </html>

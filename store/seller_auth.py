@@ -95,6 +95,8 @@ def sign_up():
         last_name = request.form.get('last_name')
         password = request.form.get('password')
         password2 = request.form.get('password2')
+        phoneNumber = request.form.get('phoneNumber')
+        print(phoneNumber)
         
         existingUser = storage.get_by_email(Seller, email)
         if existingUser:

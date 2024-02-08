@@ -1,91 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shoppers - Homepage</title>
-    <meta name="description" content="Shoppers is an online store for men">
-    <link rel="icon" type="image/x-icon" href="./favicon.ico">
-    <link rel="icon" type="image/png" href="./favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://www.flaticon.com/free-icons/others" >
-    <link href='../static/styles/store.css' rel='stylesheet'>
-</head>
-<body>
-    <header class="the-headers">
-        <div class="header-container">
-            <div class="shipping-sales">
-                <span class="head-cont">
-                    Free shipping and 30 days returns
-                </span>
-            </div>
-            <div class="Business-name">
-                <span class="head-cont">
-                    Shoppers
-                </span>
-            </div>
-            <div class="user-nav">
-                <span class="user-cont">
-                    <i class='bx bx-search'></i>
-                </span>
-                <span class="user-cont">
-                    <i class='bx bxs-user-detail'></i>
-                </span>
-                <span class="user-cont">
-                    <i class='bx bx-shopping-bag'></i>
-                </span>
-                <span class="menu">
-                    <i class='bx bx-menu'></i>
-                </span>
-            </div> 
-        </div>
-    </header>
-    <nav class="categories">
-        <span class="categories-name active">New In</span>
-        <span class="categories-name">Designers</span>
-        <span class="categories-name">Sunglasses</span>
-        <span class="categories-name">Clothing Materials</span>
-        <span class="categories-name">T-shirts</span>
-        <span class="categories-name">Tops</span>
-        <span class="categories-name">Pants</span>
-        <span class="categories-name">Accessories</span>
-        <span class="categories-name">Bags</span>
-        <span class="categories-name">Scents</span>
-        <span class="categories-name">Shoes</span>
-        <span class="categories-name">Jewelry</span>
-        <span class="categories-name">Wrist Watches</span>
-        <span class="categories-name">Boots</span>
-        <span class="categories-name">Head Wears</span>
-        <span class="categories-name">Slides</span>
-        <span class="categories-name">Palms/Slippers</span>
-    </nav>
+{% extends "main.html" %}
+{% block content %}
+    <section class="headers">
+        <header class="the-headers">
+                <div class="shipping-sales">
+                    <span class="head-cont">
+                        Free shipping and 30 days returns
+                    </span>
+                </div>
+                <div class="Business-name">
+                    <span class="head-cont">
+                        Shoppers
+                    </span>
+                </div>
+                <div>
+                    <ul class="navbar">
+                        <li><a  href="index.html"><i class='bx bx-search'></i></a></li>
+                        <li><a  href="shop.html"><i class='bx bxs-user-detail'></i></a>
+                            <ul class="dropdown">
+                                <li id="login-box"><a href='/logout'>Login</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/cart"><i class='bx bx-shopping-bag'></i></a>
+                        <span class="crt">{{ total_quantity }}</span></li>
+                        <li><a href="about.html"><i class='bx bx-menu'></i></a></li>
+                    </ul>
+                <div>
+        </header>
+        <nav class="categories">
+            <span class="categories-name active">New In</span>
+            <span class="categories-name">Designers</span>
+            <span class="categories-name">Sunglasses</span>
+            <span class="categories-name">Clothing Materials</span>
+            <span class="categories-name">T-shirts</span>
+            <span class="categories-name">Tops</span>
+            <span class="categories-name">Pants</span>
+            <span class="categories-name">Accessories</span>
+            <span class="categories-name">Bags</span>
+            <span class="categories-name">Scents</span>
+            <span class="categories-name">Shoes</span>
+            <span class="categories-name">Jewelry</span>
+            <span class="categories-name">Wrist Watches</span>
+            <span class="categories-name">Boots</span>
+            <span class="categories-name">Head Wears</span>
+            <span class="categories-name">Slides</span>
+            <span class="categories-name">Palms/Slippers</span>
+        </nav>
+    </section>
     <div class="cat-name">
         <span class="goods-category">Men Everything</span>
     </div>
-    <div class="main">
-        {% for product in all_product.values() %}
-                    <div class="pics-description" id="{{ product.id }}" seller_id="{{ product.seller_id }}">
-                        <div class="images">
-                            {% set product_images = all_images.values()|selectattr('product_id', 'equalto', product.id)|list %}
-                            {% set product_image = product_images|first %}
-                            {% if product_image %}
-                                    <div class="images2">
-                                        <img src="{{  product_image.image_filename|replace('store', '..') }}" height=400px;>
-                                    </div>
-                                    <div class="loading">
-                                        <img src="../static/images/menu.png">
-                                    </div>
-                                    {% endif %}
-                        </div>
-                        <div class="description">
-                            <span class="brandname">{{ product.BrandName }}</span>
-                            <span class="Description">{{ product.productDescription }}</span>
-                            <span class="price">&#8358;{{ product.productPrice }}</span>
-                        </div>
-                    </div>
-        {% endfor%}
-    </div>
+    <section id="product1" class="section-p1">
+        <div class="pro-container">
+            {% for product in all_product.values() %}
+            <div class="pro" >
+                {% set product_images = all_images.values()|selectattr('product_id', 'equalto', product.id)|list %}
+                {% set product_image = product_images|first %}
+                {% if product_image %}
+                <img src="{{ product_image.image_filename|replace('store', '..') }}">
+                {% endif %}
+                <div class="des">
+                    <span>{{ product.BrandName }}</span>
+                    <h5>{{ product.productDescription }}</h5>
+                    <h4>&#36;{{ product.productPrice }}</h4>
+                </div>
+                <a href="#" class="cart" data-product-id="{{ product.id }}">View Item</a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-row">
@@ -120,6 +102,4 @@
             </div>
         </div>
     </footer>
-    <script src="../static/Scripts/2-store.js"></script> 
-</body>
-</html>
+{% endblock content %}

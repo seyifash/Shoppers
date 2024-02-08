@@ -81,10 +81,15 @@ class DBStorage:
                 return self.__session.query(cls).get(user_id )
         return None
     
+    def get_orders_by_product_id(self, product_id, user_id):
+        """Query orders based on product_id."""
+        orders = self.__session.query(Order).filter_by(product_id=product_id, user_id=user_id).all()
+        return orders
+    
     def get_orders_by_user_id(self, cls, user_id):
         if cls in classes.values():
             cls_items = self.all(cls)
-            l = [l for l in cls_items.values() if l.user_id == user_id]
+            l = [l for l in cls_items.values() if l.user_id == user_id and l.paymentStatus == 'pending']
             return l
         return None
     def get_product_images(self, cls, product_id):

@@ -1,18 +1,5 @@
-<!DOCTYPE html>
-<html lan="en" dir="ltr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Shoppers - Choice</title>
-        <meta name="description" content="Shoppers is an online store for men">
-        <link rel="icon" type="image/x-icon" href="./favicon.ico">
-        <link rel="icon" type="image/png" href="./favicon.png">
-        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <link rel="stylesheet" href="../static/styles/selected.css">
-    </head>
-    <body>
+{% extends "main.html" %}
+{% block content %}
         <header class="head-bar">
             <nav class="nav-bar">
                 <span class="business-name">shoppers</span>
@@ -73,8 +60,14 @@
                 <div class="price">&#8358;{{ selectedItem.productPrice }}</div>
                 <div class="product-color">
                     <span class="col1 active">Color</span>
-                    <span class="col1">&#x2022;</span> 
-                    <span class="col1">{{ selectedItem.productColor }}</span>
+                    {% if selectedItem and selectedItem.productColor %}
+                    {% set color_list = selectedItem.productColor .split(',') %}
+                    <div class="color-button">
+                        {%  for color in color_list %}
+                        <span class="col1 col2">&#x2022; {{ color }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
                 <div class="size">
                     <div class="size-name">
@@ -97,7 +90,7 @@
                 </div>
                 <div class="add-cart">
                     <div class="add-btn">
-                        <div class="add-cart-btn"><i class='bx bx-shopping-bag'></i> Add to cart</div>
+                        <div class="add-cart-btn update-cart" data-action="add" data-product="{{ productId }}"><i class='bx bx-shopping-bag'></i> Add to cart</div>
                         <div class="favit"><i class='bx bx-heart'></i></div>
                     </div>
                     <div class="delivery-info">
@@ -106,5 +99,7 @@
                 </div>
             </div>
         </div>
-    </body>
-</html>
+        <script>const isAuthenticated = "{{ current_user.is_authenticated }}"
+        </script>
+        
+{% endblock content %}

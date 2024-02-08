@@ -1,0 +1,52 @@
+{% extends "main.html" %}
+{% block content %}
+    <section class="cart-page-head section-p1">
+        <h2 class="BName">Shoppers</h2>
+        <div class="item">
+            <span class="boxi-icon"><i class='bx bx-cart'></i></span>
+            <div class="show-total">{{ order.get_all_quantity }}</div>
+        </div>
+    </section>
+    <section class="main-cart-item">
+        <span class="continue-to" id="continue-to">&#x2190;Continue shopping</span>
+        <div class="items-total">
+            <div class="it-tot">
+                <h6>Items: {{ order.get_all_quantity }}</h6>
+                <h6>Total: ${{ order.get_all_total }}</h6>
+            </div>
+            <span>Checkout</span>
+        </div>
+    </section>
+    <section class="table">
+        <table width="90%">
+            <thead>
+                <tr>
+                    <td>Image</td>
+                    <td>Product</td>
+                    <td>Color</td>
+                    <td>Size</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Total</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items%}
+                <tr>
+                    {% set product_images = all_images.values()|selectattr('product_id', 'equalto', item.product_id)|list %}
+                    {% set product_image = product_images|first %}
+                    {% if product_image %}
+                    <td><img src="{{ product_image.image_filename|replace('store', '..') }}"></td>
+                    {% endif %}
+                    <td>{{ item.productName }}</td>
+                    <td>{{ item.productColor }}</td>
+                    <td>{{ item.productSize }}</td>
+                    <td>{{ item.productPrice }}</td>
+                    <td><span class="add" data-product="add">&#x2b;</span>{{ item.productQuantity }}<span class="remove" data-action="remove">&#x2212;</span></td>
+                    <td>{{ item.get_total }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock content %}

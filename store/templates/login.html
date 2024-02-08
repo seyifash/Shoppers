@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles/sign_in.css">
+    <title>Shoppers Home</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../static/Scripts/2-sellersignin.js"></script>
+    <script src="../static/Scripts/1-seller.js"></script>
+</head>
+    <body>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        {% if category == 'error' %}
+        <div class="the-alert-danger">
+            {{ message }}
+            <button type="button" class="danger-btn" data-dismiss="danger-btn">
+                <span aria-hidden="true" class="the_alert">&times;</span>
+            </button>
+        </div>
+        {% else %}
+        <div class="the-alert-success">
+            {{ message }}
+            <button type="button" class="close-btn" data-dismiss="alert">
+                <span aria-hidden="true" class="the-alert">&times;</span>
+            </button>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="container">
+            <div class="logo">
+            </div>
+            <div class="welcome-me">
+                <span class="hello-msg">Hello</span>
+                <span class="greetings">Welcome back Merchants!</span>
+            </div>
+            <div class="logging">
+                <form method="POST" action="{{ url_for('auth.login') }}"> 
+                    <div class="content-div">
+                        <div class="em-cont">
+                            <label for="email">Email</label>
+                            <input 
+                                type="email"
+                                class="the-control2"
+                                id="email"
+                                name="email" 
+                                placeholder="shoppit@gmail.com"
+                            />
+                        </div>
+                        <div class="em-conts">
+                                <label for="password">Password</label> 
+                                <div class="m-ctrl">
+                                <input 
+                                    type="password"
+                                    class="the-control"
+                                    id="password"
+                                    name="password" 
+                                    placeholder="Enter password"
+                                />
+                                <i class="far fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+                                </div>
+                        </div>
+                        <div class="forgot">
+                            <span class="forgot">Forgot password?</span>
+                        </div>
+                        <br />
+                            <button type="submit" class="primary-btn">Sign in</button>
+                    </div> 
+                </form> 
+            </div>
+        </div>
+    </body>
+</html>
