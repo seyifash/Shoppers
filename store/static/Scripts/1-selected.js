@@ -18,6 +18,7 @@ const sizes = document.querySelectorAll('.size-button');
     });
 
 const addBtn = document.querySelector('.update-cart');
+if(addBtn){
     addBtn.addEventListener('click', () => {
         if (productSize && productColor) {
             const productId = addBtn.dataset.product;
@@ -32,6 +33,27 @@ const addBtn = document.querySelector('.update-cart');
             console.log('select a size and color');
         }
 });
+} else {
+    console.log("Element with class 'update-cart' not found.");
+}
+
+const addBtnCart = document.querySelectorAll('.update-Cart-btn');
+addBtnCart.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const productId = btn.dataset.product;
+        const action = btn.dataset.action;
+        console.log(productId);
+        console.log(action);
+        if (!isAuthenticated) {
+            console.log('Not logged in');
+        } else {
+            updateCartItem(productSize, productColor, productId, action);
+            console.log('user is logged in, sending data');
+        }
+    });
+});
+
+
 
 function updateCartItem(productSize, productColor, productId, action) {
     let url = '/updateItem'
@@ -50,6 +72,7 @@ function updateCartItem(productSize, productColor, productId, action) {
     })
     .then((data) => {
         console.log('data:', data)
+        location.reload()
     })
     .catch((error) => {
         console.error('Error:', error);

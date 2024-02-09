@@ -15,9 +15,9 @@
                 <div>
                     <ul class="navbar">
                         <li><a  href="index.html"><i class='bx bx-search'></i></a></li>
-                        <li><a  href="shop.html"><i class='bx bxs-user-detail'></i></a>
+                        <li><i class='bx bxs-user-detail'></i>
                             <ul class="dropdown">
-                                <li id="login-box"><a href='/logout'>Login</a></li>
+                                <li id="login-box"><a href='/login'>Login</a></li>
                             </ul>
                         </li>
                         <li><a href="/cart"><i class='bx bx-shopping-bag'></i></a>
@@ -102,4 +102,7 @@
             </div>
         </div>
     </footer>
+    <script>const isAuthenticated = "{{ current_user.is_authenticated }}"
+        console.log(isAuthenticated);
+    </script>
 {% endblock content %}

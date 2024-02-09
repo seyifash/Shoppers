@@ -435,11 +435,14 @@ h6 {
 }
 .main-cart-item .continue-to {
     padding: 20px 20px;
+}
+.main-cart-item .continue-to a {
+    text-decoration: none;
     font-family: myFont;
     font-size: 30px;
-
+    color: black;
 }
-.main-cart-item .continue-to:hover {
+.main-cart-item .continue-to a:hover {
     color: red;
 }
 .main-cart-item .items-total {

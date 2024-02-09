@@ -8,7 +8,7 @@
         </div>
     </section>
     <section class="main-cart-item">
-        <span class="continue-to" id="continue-to">&#x2190;Continue shopping</span>
+        <span class="continue-to" id="continue-to"><a href="/store">&#x2190;Continue shopping</a></span>
         <div class="items-total">
             <div class="it-tot">
                 <h6>Items: {{ order.get_all_quantity }}</h6>
@@ -42,11 +42,16 @@
                     <td>{{ item.productColor }}</td>
                     <td>{{ item.productSize }}</td>
                     <td>{{ item.productPrice }}</td>
-                    <td><span class="add" data-product="add">&#x2b;</span>{{ item.productQuantity }}<span class="remove" data-action="remove">&#x2212;</span></td>
+                    <td>
+                        <span class="add update-Cart-btn" data-product="{{item.product_id}}"data-action="add">&#x2b;</span>
+                        {{ item.productQuantity }}
+                        <span class="remove update-Cart-btn" data-product="{{ item.product_id}}" data-action="remove">&#x2212;</span>
+                    </td>
                     <td>{{ item.get_total }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </section>
+    <script>const isAuthenticated = "{{ current_user.is_authenticated }}"</script>
 {% endblock content %}

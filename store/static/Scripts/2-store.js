@@ -8,23 +8,21 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
-document.getElementById("continue-to").addEventListener("click", function() {
-    window.location.href = "/store";
-});
 
-var navbarItems = document.querySelectorAll('ul.navbar li');
+console.log(isAuthenticated);
+if (isAuthenticated == 'True') {
+    let anchor = document.querySelector('#login-box a');
+    console.log(anchor.innerText);
+    anchor.href = '/logout';
+    anchor.innerText = 'Logout';
+    console.log(anchor.href);
+} else {
+    let anchor = document.querySelector('#login-box a');
+    console.log(anchor.innerText);
+    anchor.href = '/login';
+    anchor.innerText = 'Login';
+    console.log(anchor.href);
+    console.log('User is not authenticated.');
+}
 
-// Loop through each list item
-navbarItems.forEach(function(item) {
-    // Check if the inner text of the list item is "Login"
-    if (item.innerText.trim() === "Login") {
-        // Log the inner text of the found list item
-        console.log(item.innerText);
-    }
-});
 
-   /* signIn.addEventListener('click', () => {
-        if (is_authenticated){
-            console.log(signIn.innerText);
-        }
-});*/

@@ -91,19 +91,17 @@ def store():
             if images.product_id == product.id:
                 print("All images:{}".format(images.image_filename))
                 break
-    return render_template("store.html", all_product=all_product, all_images=all_images, total_quantity=total_quantity)
+    return render_template("store.html", all_product=all_product, all_images=all_images, currentUser=current_user, total_quantity=total_quantity)
 
 @auth.route('/selected_item/<productId>', methods=['GET'])
 def selected_cart(productId):
     selectedItem = storage.get_user_by_id(Product, productId)
     all_images = storage.get_product_images(ProductImage, productId)
-    if all_images:
-        for images in all_images:
-            print("All images:{}".format(images.image_filename))   
-    else:
-        print("no image")
-    print(productId)
-    return render_template("selected_item.html", selectedItem=selectedItem, productId=productId, all_images=all_images, user_id=current_user)
+    total_quantity = 0
+    if current_user.is_authenticated:
+        user_id = current_user.id
+        total_quantity = Order.get_order_quant(user_id)
+    return render_template("selected_item.html", total=total_quantity, selectedItem=selectedItem, productId=productId, all_images=all_images, user_id=current_user)
 
 @auth.route('/cart', methods=['GET'])
 def cart():
@@ -119,7 +117,7 @@ def cart():
         items = []
         order = {'get_all_total': 0, 'get_all_quantity': 0}   
                 
-    return render_template('cart.html', items=items, order=order, all_images=all_images)
+    return render_template('cart.html', items=items, order=order, all_images=all_images, currentUser=current_user)
 
 @auth.route('/checkout', methods=['GET'])
 def checkout():
@@ -149,9 +147,10 @@ def updateItem():
                 print("item productColor {}".format(item.productColor))
                 if action == 'add':
                     item.productQuantity += 1
-                    if item.productColor != productColor or item.productSize != productSize:
-                        item.productColor = productColor 
-                        item.productSize = productSize
+                    if productColor is not None or productSize is not None:
+                        if item.productColor != productColor or item.productSize != productSize:
+                            item.productColor = productColor 
+                            item.productSize = productSize
                 elif action == 'remove':
                     item.productQuantity -= 1
                     if item.productQuantity <= 0:
