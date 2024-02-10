@@ -12,17 +12,23 @@ document.addEventListener('DOMContentLoaded', function () {
 console.log(isAuthenticated);
 if (isAuthenticated == 'True') {
     let anchor = document.querySelector('#login-box a');
+    if (anchor != null){
     console.log(anchor.innerText);
     anchor.href = '/logout';
     anchor.innerText = 'Logout';
     console.log(anchor.href);
+    } else {
+        console.log('Anchor is null');
+    }
 } else {
     let anchor = document.querySelector('#login-box a');
-    console.log(anchor.innerText);
-    anchor.href = '/login';
-    anchor.innerText = 'Login';
-    console.log(anchor.href);
-    console.log('User is not authenticated.');
+    if (anchor != null){
+        console.log(anchor.innerText);
+        anchor.href = '/login';
+        anchor.innerText = 'Login';
+        console.log(anchor.href);
+        console.log('User is not authenticated.');
+    }
 }
 
 

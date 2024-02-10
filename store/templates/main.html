@@ -12,6 +12,7 @@
     <link href="https://www.flaticon.com/free-icons/others" >
     <link href='../static/styles/store.css' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="../static/styles/checkout.css">
     <link rel="stylesheet" href="../static/styles/selected.css">
 </head>
 <body>
@@ -21,6 +22,35 @@
     </div> 
     
     <script src="../static/Scripts/2-store.js"></script>
-    <script src="../static/Scripts/1-selected.js"></script> 
+    <script src="../static/Scripts/1-selected.js"></script>
+    <script type="text/javascript">
+
+        function getCookie(name) {
+            //split cookie string and get all individual name=value pairs in an array
+            let cookieArr = document.cookie.split(";");
+
+            //loop through he array elements
+            for(let i = 0; i < cookieArr.length; i++) {
+                let cookiePair = cookieArr[i].split("=");
+
+                /* Removing whitespace at the begnning of the cookie name and compare it with the given string */
+                if(name == cookiePair[0].trim()) {
+                    //Decode the cookie value and return
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+            // Return null if not found
+            return null;
+        }
+
+        let cart = JSON.parse(getCookie('cart'))
+        if(cart == undefined) {
+            cart = {}
+            console.log('Cart was created!')
+            document.cookie = 'cart=' + JSON.stringify(cart) + ";domain;path=/"
+        }
+        console.log('cart', cart);
+        
+    </script> 
 </body>
 </html>

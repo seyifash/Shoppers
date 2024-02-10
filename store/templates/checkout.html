@@ -1,0 +1,123 @@
+{% extends "main.html" %}
+{% block content %}
+    <header class="head">Shoppers</header>
+<section class="order">
+    <div class="order-summary">
+        <div class="wrap-order">
+            <a href="./store">&#x2190; Continue shopping</a>
+            <h4>Order Summary</h4>
+            {% for item in items %}
+            <div class="details">
+                {% set product_images = all_images.values()|selectattr('product_id', 'equalto', item.product_id)|list %}
+                {% set product_image = product_images|first %}
+                {% if product_image %}
+                <div class="imag"><img src="{{ product_image.image_filename|replace('store', '..') }}"></div>
+                {% endif %}
+                <div class="description">
+                    <h6>{{ item.productName }}</h6>
+                    <span>{{ item.productName }}</span>
+                    <span>&#8358;{{ item.get_total }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="summary">
+            <div class="sub-total">
+                <span class="Subtotal">Total Quantity</span>
+                <span class="sub-price">{{ order.get_all_quantity }}</span>
+            </div>
+            <div class="sub-total">
+                <span class="Subtotal"> Subtotal</span>
+                <span class="sub-price">&#8358;{{ order.get_all_total }}</span>
+            </div>
+            <div class="sub-total">
+                <span class="Subtotal">Tax</span>
+                <span class="sub-price">&#8358;50</span>
+            </div>
+            <div class="sub-total">
+                <span class="Subtotal"> Shipping</span>
+                <span class="sub-price">Free</span>
+            </div>
+            <div class="sub-order">
+                <span class="Suborder">Order Total</span>
+                <span class="order-price">&#8358;437</span>
+            </div>
+        </div>
+    </div>
+    <div class='user-details'>
+        <form id="form">
+            <label for="userName">Name</label>
+            <input type="text" name="userName" class="name-of-user">
+            <label for="address">Address</label>
+            <input type="text" name="address" class="name-of-user">
+            <div class="input">
+                <div>
+                    <label for="email">Email</label>
+                    <input type="text" name="email" class="name-email">
+                </div>
+                <div>
+                    <label for="phoneNumber">Phone Number</label>
+                    <input type="text" name="phoneNumber" class="phone">
+                </div>
+            </div>
+            <button type="submit" class="submitit" id="order-submit">Continue</button>
+        </form>
+        <div id="finished" class="finish hidden">
+            <small>Paystack options</small>
+            <button id="make-payment">Make Payment</button>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    const isAuthenticated = "{{ currentUser.is_authenticated }}";
+    console.log(isAuthenticated);
+    const total = '{{ order.get_all_total }}';
+    if (isAuthenticated === 'True'){
+        document.getElementById('form').innerHTML = '';
+        document.getElementById('finished').classList.remove('hidden');
+    }
+    let form = document.getElementById('form');
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        console.log('form submitted');
+        document.getElementById('order-submit').classList.add('hidden');
+        document.getElementById('finished').classList.remove('hidden');
+    })
+
+    document.getElementById('make-payment').addEventListener('click', function(e) {
+        submitFormData();
+    })
+    function submitFormData() {
+        console.log("button click ..");
+        let userFormData = {
+            'name': null,
+            'email': null,
+            'phoneNumber': null,
+            'Address': null,
+            'total' : total,
+        }
+        if(isAuthenticated == 'False')
+        {
+            userFormData.name = form.userName.value,
+            userFormData.email = form.email.value,
+            userFormData.phoneNumber = form.phoneNumber.value,
+            userFormData.Address = form.address.value,
+            userFormData.total = total
+        }
+        const url = '/processOrder'
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({'form': userFormData})
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Success:', data);
+            alert('Transaction completed');
+            window.location.href = "/store";
+        })
+    }
+</script>
+{% endblock content %}

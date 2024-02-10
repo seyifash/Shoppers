@@ -76,7 +76,7 @@
                         <span class="col2">{{ selectedItem.productMeasurement }}</span>
                     </div>
                     {% if selectedItem and selectedItem.productSize %}
-                    {% set size_list = selectedItem.productSize .split(',') %}
+                    {% set size_list = selectedItem.productSize.split(',') %}
                     <div class="size-btn">
                         {% for size in size_list %}
                         <div class="size-button">{{ size }}</div>

@@ -23,8 +23,8 @@ if(addBtn){
         if (productSize && productColor) {
             const productId = addBtn.dataset.product;
             const action = addBtn.dataset.action;
-            if(!isAuthenticated){
-                console.log('Not logged in')
+            if(isAuthenticated == 'False'){
+                addToCookieItem(productId, action, productColor, productSize);
             }else {
                 updateCartItem(productSize, productColor, productId, action);
                 console.log('user is logged in, sending data');
@@ -44,15 +44,44 @@ addBtnCart.forEach((btn) => {
         const action = btn.dataset.action;
         console.log(productId);
         console.log(action);
-        if (!isAuthenticated) {
-            console.log('Not logged in');
+        if (isAuthenticated == 'False') {
+            addToCookieItem(productId, action, productColor, productSize);
         } else {
             updateCartItem(productSize, productColor, productId, action);
             console.log('user is logged in, sending data');
         }
     });
 });
+function addToCookieItem(productId, action, productColor, productSize){
+    console.log('This user is not authenticated');
+    if(action == 'add') {
+        if(cart[productId] == undefined) {
+            cart[productId] = {
+                'quantity': 1,
+                'productColor': productColor,
+                'productSize': productSize
+            };
+        }else{
+            cart[productId]['quantity'] += 1
+            if(cart[productId]['productColor'] != productColor || cart[productId]['productSize'] != productSize){
+                    cart[productId]['productColor'] = productColor
+                    cart[productId]['productSize'] = productSize
+            }
+        }
+    }
+    if(action == 'remove') {
+        cart[productId]['quantity'] -= 1
+        if(cart[productId]['quantity']  <= 0){
+            console.log('Remove Item');
+            delete cart[productId]
+        }
+    }
+    console.log('cart:', cart);
+    document.cookie = 'cart=' + JSON.stringify(cart) + ";domain;path=/"
+    location.reload()
 
+
+}
 
 
 function updateCartItem(productSize, productColor, productId, action) {

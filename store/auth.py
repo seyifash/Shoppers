@@ -5,6 +5,7 @@ from models.product import Product, ProductImage
 from models.order import Order
 from models import storage
 from hashlib import md5
+import datetime
 import json
 
 
@@ -84,13 +85,6 @@ def store():
         total_quantity = Order.get_order_quant(user_id)
     else:
         total_quantity = 0
-    
-    for product in all_product.values():
-        print("All product: {} ".format(product))
-        for images in all_images.values():
-            if images.product_id == product.id:
-                print("All images:{}".format(images.image_filename))
-                break
     return render_template("store.html", all_product=all_product, all_images=all_images, currentUser=current_user, total_quantity=total_quantity)
 
 @auth.route('/selected_item/<productId>', methods=['GET'])
@@ -113,15 +107,83 @@ def cart():
         total_amount = Order.get_order_total(user_id)
         total_quantity = Order.get_order_quant(user_id)
         order = {'get_all_total': total_amount, 'get_all_quantity': total_quantity}
+        cartItems = order.get_all_quantity
     else:
+        try:
+            cart = json.loads(request.cookies.get('cart'))
+        except:
+            cart = {}
+        print('cart:', cart)
         items = []
-        order = {'get_all_total': 0, 'get_all_quantity': 0}   
+        order = {'get_all_total': 0, 'get_all_quantity': 0}
+        cartItems = order['get_all_quantity']
+        for i in cart:
+            try:
+                cartItems += cart[i]["quantity"]
+                product = storage.get_user_by_id(Product, i) 
+                total = (product.productPrice * cart[i]['quantity'])
+                order['get_all_total'] += total
+                order['get_all_quantity'] += cart[i]["quantity"]
+                item = {
+                        'id': product.id,
+                        'productName':product.productDescription,
+                        'ProductPrice': product.productPrice,
+                        'seller_id': product.seller_id,
+                        'product_id': product.id,
+                        'productSize': cart[i]["productSize"],
+                        'productColor': cart[i]["productColor"],
+                        'productPrice': product.productPrice,
+                        'productQuantity': cart[i]["quantity"],
+                        'get_total': total,
+                }
+                items.append(item)
+            except:
+                pass
                 
-    return render_template('cart.html', items=items, order=order, all_images=all_images, currentUser=current_user)
-
+    return render_template('cart.html', items=items, order=order, cartItems=cartItems,  all_images=all_images, currentUser=current_user)
 @auth.route('/checkout', methods=['GET'])
 def checkout():
-    return render_template("checkout.html")
+    items = None
+    all_images = storage.all(ProductImage)
+    if current_user.is_authenticated:
+        user_id = current_user.id
+        items = storage.get_orders_by_user_id(Order, user_id)
+        total_amount = Order.get_order_total(user_id)
+        total_quantity = Order.get_order_quant(user_id)
+        order = {'get_all_total': total_amount, 'get_all_quantity': total_quantity}
+        cartItems = order.get_all_quantity
+    else:
+        try:
+            cart = json.loads(request.cookies.get('cart'))
+        except:
+            cart = {}
+        print('cart:', cart)
+        items = []
+        order = {'get_all_total': 0, 'get_all_quantity': 0}
+        cartItems = order['get_all_quantity']
+        for i in cart:
+            cartItems += cart[i]["quantity"]
+            product = storage.get_user_by_id(Product, i) 
+            total = (product.productPrice * cart[i]['quantity'])
+            order['get_all_total'] += total
+            order['get_all_quantity'] += cart[i]["quantity"]
+            item = {
+                    'id': product.id,
+                    'productName':product.productDescription,
+                    'ProductPrice': product.productPrice,
+                    'seller_id': product.seller_id,
+                    'product_id': product.id,
+                    'productSize': cart[i]["productSize"],
+                    'productColor': cart[i]["productColor"],
+                    'productPrice': product.productPrice,
+                    'productQuantity': cart[i]["quantity"],
+                    'paymentStatus': 'pending',
+                    'transaction_id': None,
+                    'get_total': total,
+            }
+            items.append(item)
+                
+    return render_template('checkout.html', items=items, cartItems=cartItems, order=order, all_images=all_images, currentUser=current_user)
 
 @auth.route('/updateItem', methods=['POST'])
 def updateItem():
@@ -176,3 +238,22 @@ def updateItem():
     else: 
         print('not authenticated')    
         return jsonify({'message': 'User not authenticated'})
+    
+@auth.route('/processOrder', methods=['POST', 'GET'])
+def processOrder():
+    if request.method == 'POST':
+        data = request.get_json()
+        print('Data', data)
+        transaction_id = datetime.datetime.now().timestamp()
+        if current_user.is_authenticated:
+            user_id = current_user.id
+            total = data['form']['total']
+            if total == Order.get_order_total(user_id):
+                items = storage.get_orders_by_user_id(Order, user_id)
+                if items:
+                    for item in items:
+                        item.paymentStatus = "paid"
+                        item.transaction_id = transaction_id
+                    storage.save()
+            
+    return jsonify('payment complete')

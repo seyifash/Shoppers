@@ -4,7 +4,7 @@
         <h2 class="BName">Shoppers</h2>
         <div class="item">
             <span class="boxi-icon"><i class='bx bx-cart'></i></span>
-            <div class="show-total">{{ order.get_all_quantity }}</div>
+            <div class="show-total">{{ cartItems }}</div>
         </div>
     </section>
     <section class="main-cart-item">
@@ -12,9 +12,9 @@
         <div class="items-total">
             <div class="it-tot">
                 <h6>Items: {{ order.get_all_quantity }}</h6>
-                <h6>Total: ${{ order.get_all_total }}</h6>
+                <h6>Total: &#8358;{{ order.get_all_total }}</h6>
             </div>
-            <span>Checkout</span>
+            <span><a href="/checkout">Checkout</a></span>
         </div>
     </section>
     <section class="table">
@@ -41,13 +41,13 @@
                     <td>{{ item.productName }}</td>
                     <td>{{ item.productColor }}</td>
                     <td>{{ item.productSize }}</td>
-                    <td>{{ item.productPrice }}</td>
+                    <td>&#8358;{{ item.productPrice }}</td>
                     <td>
                         <span class="add update-Cart-btn" data-product="{{item.product_id}}"data-action="add">&#x2b;</span>
                         {{ item.productQuantity }}
                         <span class="remove update-Cart-btn" data-product="{{ item.product_id}}" data-action="remove">&#x2212;</span>
                     </td>
-                    <td>{{ item.get_total }}</td>
+                    <td>&#8358;{{ item.get_total }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
