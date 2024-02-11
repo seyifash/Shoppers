@@ -66,8 +66,7 @@ body {
     display: block;
     padding-left:10px;
     padding-right: 10px;
-   
-    
+    cursor: pointer;
 }
 .cart span {
     display: block;
@@ -75,6 +74,10 @@ body {
     font-weight: 600;
     line-height: 12px;
     text-align: center;
+}
+.cart span a {
+    color: #000;
+    text-decoration: none;
 }
 
 .cart .envelope i {
@@ -99,11 +102,12 @@ body {
     font-size: 10px;
     font-weight: 600;
 }
+
 .favorites {
     display: block;
     padding-left:10px;
     padding-right: 10px;
-   
+    cursor: pointer;
 }
 .favorites span {
     display: block;
@@ -119,7 +123,7 @@ body {
 .image {
     display: block;
     padding-left:10px;
-   
+    cursor: pointer;
 }
 .image span {
     display: block;
@@ -198,6 +202,7 @@ body {
 .small-view .small-1 img:hover {
     border: 1px solid black;
     border-radius: 10px;
+    cursor: pointer;
 }
 .info {
     margin-left: 50px;
@@ -242,6 +247,7 @@ body {
     font-size: 12px;
     color: #d3d8b1;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 .info .product-color .col1 {
     display: flex;
@@ -278,7 +284,7 @@ body {
     display: flex;
     width: 100%;
     font-size: 12px;
-    color: #d3d8b1;;
+    color: #d3d8b1;
 }
 .size .size-name .col2 {
     display: flex;
@@ -307,7 +313,8 @@ body {
     align-items: center;
     border-radius: 5px;
     font-weight: 600;
-    transition: ease 0.5s all
+    transition: ease 0.5s all;
+    cursor: pointer;
 }
 .size .size-btn  .size-button:hover {
     background: black;
@@ -343,6 +350,7 @@ body {
     border-radius:10px;
     font-size: 14px;
     transition: ease 0.5s all;
+    cursor: pointer;
 }
 .add-cart .add-btn  .add-cart-btn i {
     padding-right: 7px;

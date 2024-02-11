@@ -184,9 +184,10 @@ h6 {
 }
 
 .order .user-details form .input div input {
-   width: 100%;
+    width: 100%;
     justify-content: flex-end;
     height: 50px;
+    padding-left: 20px;
 }
 .order .user-details form .submitit,
 .order .user-details .finish  {

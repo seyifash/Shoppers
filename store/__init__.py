@@ -27,12 +27,12 @@ def create_app():
     
     
     # from .views import views
-    # from .views import views
+    from .views import views
     from .seller_auth import seller_auth
     from .seller_views import seller_views
     from .auth import auth
     
-    # app.register_blueprint(views, url_prefix='/')
+    app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(seller_auth, url_prefix='/')
     app.register_blueprint(seller_views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')

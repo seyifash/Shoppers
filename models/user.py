@@ -24,3 +24,13 @@ class User(BaseModel, Base, UserMixin):
         if name == "password":
             value = md5(value.encode()).hexdigest()
         super().__setattr__(name, value)
+
+class UnAuthenticatedUser(BaseModel, Base, UserMixin):        
+    """creates a table for a unauthenticateduser"""
+    __tablename__ = 'unauthenticateduser'
+    email = Column(String(128), nullable=False, unique=True)
+    Address = Column(String(255), nullable=False)
+    first_name = Column(String(128), nullable=False)
+    last_name = Column(String(128), nullable=False)
+    phoneNumber = Column(String(128), nullable=False)
+    orders = relationship('Order', backref='users')
