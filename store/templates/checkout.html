@@ -64,10 +64,12 @@
         </form>
         <div id="finished" class="finish hidden">
             <small>Paystack options</small>
-            <button id="make-payment">Make Payment</button>
+            <button type="button" id="start-payment-button" onclick="makePayment()">Pay Now</button>
+            <!-- <button id="make-payment">Make Payment</button>-->
         </div>
     </div>
 </section>
+<script src="https://checkout.flutterwave.com/v3.js"></script>
 <script type="text/javascript">
     const isAuthenticated = "{{ currentUser.is_authenticated }}";
     console.log(isAuthenticated);
@@ -84,10 +86,36 @@
         document.getElementById('finished').classList.remove('hidden');
     })
 
-    document.getElementById('make-payment').addEventListener('click', function(e) {
+   /* document.getElementById('make-payment').addEventListener('click', function(e) {
         submitFormData();
-    })
-    function submitFormData() {
+    })*/
+
+    function makePayment() {
+        const textref = Date.now(); 
+        FlutterwaveCheckout({
+            public_key: "FLWPUBK_TEST-21abe695229e363193c7da8f59a9b336-X",
+            tx_ref: textref,
+            amount: total,
+            currency: "NGN",
+            payment_options: "card, banktransfer, ussd",
+            meta: {
+                source: "docs-inline-test",
+                consumer_mac: "92a3-912ba-1192a",
+            },
+            customer: {
+                email: form.email.value,
+                phone_number: form.phoneNumber.value,
+                name: form.userName.value,
+            },
+            customizations: {
+                title: "Flutterwave Developers",
+                description: "Test Payment",
+                logo: "https://checkout.flutterwave.com/assets/img/rave-logo.png",
+            },
+            });
+            /*submitFormData(textref);*/
+    }
+    function submitFormData(textref) {
         console.log("button click ..");
         let userFormData = {
             'name': null,
@@ -110,7 +138,7 @@
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({'form': userFormData})
+            body: JSON.stringify({'form': userFormData, 'transaction_id': textref})
         })
         .then((response) => response.json())
         .then((data) => {
@@ -119,7 +147,7 @@
 
             cart = {}
             document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/";
-            window.location.href = "/store";
+            /*window.location.href = "/store";*/
         })
     }
 </script>

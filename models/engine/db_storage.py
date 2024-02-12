@@ -1,5 +1,5 @@
 from models.base_model import BaseModel, Base
-from models.user import User
+from models.user import User, UnAuthenticatedUser 
 from models.product import Product, ProductImage
 from models.seller_user import Seller
 from models.order import Order
@@ -10,7 +10,7 @@ from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm.session import sessionmaker
 from datetime import datetime, timedelta
 
-classes = {"User": User, "Product": Product, "Seller": Seller, "Order": Order, "Category": Category, "ProductImage": ProductImage}
+classes = {"User": User, "Product": Product, "Seller": Seller, "Order": Order, "Category": Category, "ProductImage": ProductImage, "UnAuthenticatedUser": UnAuthenticatedUser}
 
 class DBStorage:
     """ data storage using sqlalchemy"""

@@ -21,7 +21,7 @@ def cookieCart(request):
             order['get_all_total'] += total
             order['get_all_quantity'] += cart[i]["quantity"]
             item = {
-                    'user_id': None,
+                    'users_unAuthen_id': None,
                     'productName':product.productDescription,
                     'ProductPrice': product.productPrice,
                     'seller_id': product.seller_id,
@@ -58,7 +58,7 @@ def cartData(request, current_user):
     
     return {'cartItems': cartItems, 'order': order, 'items': items, 'all_images': all_images}
 
-def guestOrder(request, data):
+def guestOrder(request, data, transaction_id):
     print('User is not logged in...')
     print('COOKIES:', json.loads(request.cookies.get('cart')))
     name = data['form']['name']
@@ -77,10 +77,10 @@ def guestOrder(request, data):
     print(user_isNot.id)
     
     for item in items:
-        item['user_id'] = user_isNot.id 
+        item['users_unAuthen_id'] = user_isNot.id 
         orders = Order(**item)
         orders.save() 
-        if total == order.get_all_total:
+        if total == order['get_all_total']:
             items2 = storage.get_orders_by_user_id(Order, orders.user_id)
             if items2:
                 for item in items2:

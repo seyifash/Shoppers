@@ -24,8 +24,9 @@ if(addBtn){
             const productId = addBtn.dataset.product;
             const action = addBtn.dataset.action;
             if(isAuthenticated == 'False'){
-                addToCookieItem(productId, action, productColor, productSize);
+                addToCookieItem(productId, action, productColor, productSize)
             }else {
+                
                 updateCartItem(productSize, productColor, productId, action);
                 console.log('user is logged in, sending data');
             }
@@ -61,6 +62,11 @@ function addToCookieItem(productId, action, productColor, productSize){
                 'productColor': productColor,
                 'productSize': productSize
             };
+            const hiddenElement = document.querySelector('.hide');
+            hiddenElement.classList.remove('hide');
+            setTimeout(() => {
+                hiddenElement.classList.add('hide');
+            }, 3000);
         }else{
             cart[productId]['quantity'] += 1
             if(cart[productId]['productColor'] != productColor || cart[productId]['productSize'] != productSize){

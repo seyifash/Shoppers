@@ -13,9 +13,10 @@ class Order(BaseModel, Base):
     productColor = Column(String(255), nullable=False)
     paymentStatus = Column(String(255), nullable=False)
     transaction_id = Column(String(200), nullable=True)
-    user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
+    user_id = Column(String(60), ForeignKey('users.id'), nullable=True)
     seller_id = Column(String(60), ForeignKey('seller.id'), nullable=False)
     product_id = Column(String(60), ForeignKey('product.id'), nullable=False)
+    users_unAuthen_id = Column(String(60), ForeignKey('unauthenticateduser.id'), nullable=True )
     
     
     @property
@@ -23,15 +24,9 @@ class Order(BaseModel, Base):
         total = self.productPrice * self.productQuantity
         return total
     
-    @property
-    def get_all_total(self):
-        total = sum(order.productTotal for order in self)
-        return total
-    
-    @property
-    def get_all_quantity(self):
-        total_quantity = sum(order.productQuantity for order in self)
-        return total_quantity
+    @get_total.setter
+    def get_total(self, value):
+        self._get_total = value
         
     @staticmethod
     def get_order_total(user_id):

@@ -112,7 +112,7 @@ def processOrder():
     if request.method == 'POST':
         data = request.get_json()
         print('Data', data)
-        transaction_id = datetime.datetime.now().timestamp()
+        transaction_id = data['transaction_id']
         if current_user.is_authenticated:
             user_id = current_user.id
             total = data['form']['total']
@@ -124,5 +124,5 @@ def processOrder():
                         item.transaction_id = transaction_id
                     storage.save()
         else:
-            customer, order = guestOrder(request, data)
+            customer, order = guestOrder(request, data, transaction_id)
     return jsonify('payment complete')

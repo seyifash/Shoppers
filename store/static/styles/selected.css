@@ -337,6 +337,7 @@ body {
 .add-cart .add-btn {
     display: flex;
     width: 100%;
+    position: relative;
 }
 .add-cart .add-btn  .add-cart-btn {
     display: flex;
@@ -359,6 +360,19 @@ body {
 .add-cart .add-btn  .add-cart-btn:hover{
     background: yellow;
     color: black;
+}
+.hide {
+    display: none;
+}
+.add-cart .add-btn .pop-up {
+    position: absolute;
+    border-radius: 7px;
+    background: rgb(255, 255, 83);
+    padding: 10px 20px;
+    color: #000;
+    top: -50px;
+    left: 100px;
+
 }
 .add-cart .add-btn .favit {
     display: flex;
